@@ -7,13 +7,7 @@ import presentacion.MainGUI;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Formulario para consultas del sistema por parte de empleados.
- * Permite consultar saldos y movimientos de cuentas.
- * 
- * @author TuNombre
- * @version 1.0
- */
+
 public class FrmConsultasEmpleado extends JFrame {
     
     private final GestorBanco gestorBanco;

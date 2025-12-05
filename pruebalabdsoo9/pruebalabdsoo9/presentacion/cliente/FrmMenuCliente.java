@@ -37,7 +37,7 @@ public class FrmMenuCliente extends JFrame {
         panel.setOpaque(false);
         
         // Título
-              JLabel lblTitulo = new JLabel("🏦 MENÚ CLIENTE");
+              JLabel lblTitulo = new JLabel(" MENÚ CLIENTE");
         lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 28));
         lblTitulo.setAlignmentX(Component.CENTER_ALIGNMENT);
         lblTitulo.setForeground(new Color(41, 128, 185));

@@ -16,7 +16,7 @@ public class FrmPermisosAdmin extends JFrame {
         p.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         p.setBackground(new Color(240, 248, 255));
 
-        JLabel tit = new JLabel("🔐 Permisos por Tipo de Usuario");
+        JLabel tit = new JLabel(" Permisos por Tipo de Usuario");
         tit.setFont(new Font("Segoe UI", Font.BOLD, 22));
         tit.setForeground(new Color(41, 128, 185));
         tit.setHorizontalAlignment(SwingConstants.CENTER);

@@ -46,7 +46,7 @@ public class FrmRetiro extends JFrame {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         
         // Título
-        JLabel lblTitulo = new JLabel("💸 REALIZAR RETIRO");
+        JLabel lblTitulo = new JLabel(" REALIZAR RETIRO");
         lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 24));
         lblTitulo.setForeground(new Color(231, 76, 60));
         gbc.gridx = 0; gbc.gridy = 0; gbc.gridwidth = 2;
@@ -103,19 +103,19 @@ public class FrmRetiro extends JFrame {
         JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
         panelBotones.setOpaque(false);
         
-        JButton btnRetirar = new JButton("✅ Retirar");
+        JButton btnRetirar = new JButton(" Retirar");
         btnRetirar.setFont(new Font("Segoe UI", Font.BOLD, 14));
         btnRetirar.setBackground(new Color(39, 174, 96));
         btnRetirar.setForeground(Color.WHITE);
         btnRetirar.addActionListener(e -> realizarRetiro());
         panelBotones.add(btnRetirar);
         
-        JButton btnLimpiar = new JButton("🧹 Limpiar");
+        JButton btnLimpiar = new JButton(" Limpiar");
         btnLimpiar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         btnLimpiar.addActionListener(e -> limpiar());
         panelBotones.add(btnLimpiar);
         
-        JButton btnCancelar = new JButton("❌ Cancelar");
+        JButton btnCancelar = new JButton(" Cancelar");
         btnCancelar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         btnCancelar.setBackground(new Color(231, 76, 60));
         btnCancelar.setForeground(Color.WHITE);
@@ -140,7 +140,7 @@ public class FrmRetiro extends JFrame {
         // Validaciones básicas
         if (numeroCuenta.isEmpty() || montoStr.isEmpty()) {
             JOptionPane.showMessageDialog(this, 
-                "⚠️ Debe ingresar número de cuenta y monto", 
+                " Debe ingresar número de cuenta y monto", 
                 "Error de Validación", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -151,13 +151,13 @@ public class FrmRetiro extends JFrame {
             monto = Double.parseDouble(montoStr);
             if (monto <= 0) {
                 JOptionPane.showMessageDialog(this, 
-                    "⚠️ El monto debe ser mayor a cero", 
+                    " El monto debe ser mayor a cero", 
                     "Error", JOptionPane.WARNING_MESSAGE);
                 return;
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, 
-                "⚠️ El monto debe ser un número válido", 
+                " El monto debe ser un número válido", 
                 "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -177,7 +177,7 @@ public class FrmRetiro extends JFrame {
             limpiar();
         } else {
             JOptionPane.showMessageDialog(this, 
-                "❌ Error al realizar el retiro.\n" +
+                " Error al realizar el retiro.\n" +
                 "Posibles causas:\n" +
                 "• Saldo insuficiente\n" +
                 "• Cuenta inactiva o no encontrada\n" +

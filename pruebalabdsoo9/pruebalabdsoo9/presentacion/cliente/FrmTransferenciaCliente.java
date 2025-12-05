@@ -8,11 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-/**
- * Formulario para transferir dinero entre cuentas.
- * @author TuNombre
- * @version 1.0
- */
+
 public class FrmTransferenciaCliente extends JFrame {
 
     private final GestorBanco gestorBanco;
@@ -46,7 +42,7 @@ public class FrmTransferenciaCliente extends JFrame {
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
         // Título
-        JLabel lblTitulo = new JLabel("📤 REALIZAR TRANSFERENCIA");
+        JLabel lblTitulo = new JLabel(" REALIZAR TRANSFERENCIA");
         lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 22));
         lblTitulo.setForeground(new Color(52, 152, 219));
         gbc.gridx = 0; gbc.gridy = 0; gbc.gridwidth = 2;
@@ -92,17 +88,17 @@ public class FrmTransferenciaCliente extends JFrame {
         JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
         panelBotones.setOpaque(false);
 
-        JButton btnTransferir = new JButton("✅ Transferir");
+        JButton btnTransferir = new JButton(" Transferir");
         btnTransferir.setBackground(new Color(39, 174, 96));
         btnTransferir.setForeground(Color.WHITE);
         btnTransferir.addActionListener(this::realizarTransferencia);
         panelBotones.add(btnTransferir);
 
-        JButton btnLimpiar = new JButton("🧹 Limpiar");
+        JButton btnLimpiar = new JButton(" Limpiar");
         btnLimpiar.addActionListener(e -> limpiar());
         panelBotones.add(btnLimpiar);
 
-        JButton btnCancelar = new JButton("❌ Cancelar");
+        JButton btnCancelar = new JButton(" Cancelar");
         btnCancelar.setBackground(new Color(231, 76, 60));
         btnCancelar.setForeground(Color.WHITE);
         btnCancelar.addActionListener(e -> dispose());
@@ -123,7 +119,7 @@ public class FrmTransferenciaCliente extends JFrame {
 
         if (origen.isEmpty() || destino.isEmpty() || montoStr.isEmpty()) {
             JOptionPane.showMessageDialog(this,
-                "⚠️ Complete cuenta origen, destino y monto",
+                " Complete cuenta origen, destino y monto",
                 "Error", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -134,7 +130,7 @@ public class FrmTransferenciaCliente extends JFrame {
             if (monto <= 0) throw new NumberFormatException();
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this,
-                "⚠️ Monto debe ser un número mayor a cero",
+                " Monto debe ser un número mayor a cero",
                 "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -151,7 +147,7 @@ public class FrmTransferenciaCliente extends JFrame {
             limpiar();
         } else {
             JOptionPane.showMessageDialog(this,
-                "❌ Error al transferir\n" +
+                " Error al transferir\n" +
                 "• Verifique que ambas cuentas existan y estén activas\n" +
                 "• Saldo suficiente en cuenta origen\n" +
                 "• No exceda límites diarios",

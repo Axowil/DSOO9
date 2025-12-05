@@ -7,13 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-/**
- * Menú exclusivo para Administradores del Sistema Bancario.
- * Proporciona acceso total al sistema: usuarios, empleados, auditoría, reportes.
- * 
- * @author TuNombre
- * @version 1.0
- */
+
 public class FrmMenuAdministrador extends JFrame {
     
     private final GestorBanco gestorBanco;
@@ -42,7 +36,7 @@ public class FrmMenuAdministrador extends JFrame {
         panel.setOpaque(false);
         
         // Título
-        JLabel lblTitulo = new JLabel("👑 MENÚ ADMINISTRADOR");
+        JLabel lblTitulo = new JLabel(" MENÚ ADMINISTRADOR");
         lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 30));
         lblTitulo.setAlignmentX(Component.CENTER_ALIGNMENT);
         lblTitulo.setForeground(new Color(41, 128, 185));
@@ -57,20 +51,21 @@ public class FrmMenuAdministrador extends JFrame {
         panel.add(Box.createVerticalStrut(30));
         
         // Botones del menú
-        agregarBoton(panel, "👤 Gestionar Usuarios", e -> abrirGestionUsuarios());
-        agregarBoton(panel, "👔 Gestionar Empleados", e -> abrirGestionEmpleados());
-        agregarBoton(panel, "⚙️ Gestión Completa del Sistema", e -> abrirGestionCompleta());
-        agregarBoton(panel, "📊 Reportes y Estadísticas", e -> abrirReportesAdmin());
-        agregarBoton(panel, "🛡️ Auditoría del Sistema", e -> abrirAuditoria());
-        agregarBoton(panel, "🔐 Ver Todos los Permisos", e -> mostrarTodosPermisos());
+        agregarBoton(panel, " Gestionar Usuarios", e -> abrirGestionUsuarios());
+        agregarBoton(panel, " Gestionar Empleados", e -> abrirGestionEmpleados());
+        agregarBoton(panel, " Gestión Completa del Sistema", e -> abrirGestionCompleta());
+        agregarBoton(panel, " Reportes y Estadísticas", e -> abrirReportesAdmin());
+        agregarBoton(panel, " Auditoría del Sistema", e -> abrirAuditoria());
+        agregarBoton(panel, " Ver Todos los Permisos", e -> mostrarTodosPermisos());
         
         panel.add(Box.createVerticalGlue());
         
         // Botón de cerrar sesión
-        JButton btnCerrarSesion = new JButton("🔒 Cerrar Sesión");
+        JButton btnCerrarSesion = new JButton(" Cerrar Sesión");
         btnCerrarSesion.setFont(new Font("Segoe UI", Font.BOLD, 14));
         btnCerrarSesion.setBackground(new Color(231, 76, 60));
-        btnCerrarSesion.setForeground(Color.WHITE);
+        btnCerrarSesion.setForeground(Color.BLACK);
+        btnCerrarSesion.setOpaque(true);
         btnCerrarSesion.setAlignmentX(Component.CENTER_ALIGNMENT);
         btnCerrarSesion.setMaximumSize(new Dimension(400, 50));
         btnCerrarSesion.addActionListener(e -> cerrarSesion());
@@ -81,20 +76,19 @@ public class FrmMenuAdministrador extends JFrame {
     }
     
     private void agregarBoton(JPanel panel, String texto, ActionListener accion) {
-        JButton boton = new JButton(texto);
-        boton.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-        boton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        boton.setMaximumSize(new Dimension(450, 55));
-        boton.addActionListener(accion);
-        boton.setBackground(new Color(52, 152, 219));
-        boton.setForeground(Color.WHITE);
-        boton.setFocusPainted(false);
-        boton.setBorderPainted(false);
-        boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        boton.setToolTipText(texto);
-        
-        panel.add(boton);
-        panel.add(Box.createVerticalStrut(12));
+        JButton btnCerrarSesion = new JButton(" Cerrar Sesión");
+    btnCerrarSesion.setFont(new Font("Segoe UI", Font.BOLD, 14));
+    btnCerrarSesion.setBackground(new Color(231, 76, 60));
+    btnCerrarSesion.setForeground(Color.DARK_GRAY); // Cambiar a blanco para mejor contraste
+    btnCerrarSesion.setOpaque(true);
+    btnCerrarSesion.setBorderPainted(false); // Agregar esta línea
+    btnCerrarSesion.setFocusPainted(false); // Agregar esta línea
+    btnCerrarSesion.setContentAreaFilled(true); // Agregar esta línea
+    btnCerrarSesion.setAlignmentX(Component.CENTER_ALIGNMENT);
+    btnCerrarSesion.setMaximumSize(new Dimension(400, 50));
+    btnCerrarSesion.addActionListener(e -> cerrarSesion());
+    btnCerrarSesion.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    panel.add(btnCerrarSesion);
     }
     
     private void abrirGestionUsuarios() {

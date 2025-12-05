@@ -11,13 +11,7 @@ import presentacion.MainGUI;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Formulario de reportes y estadísticas para administradores.
- * Muestra información completa del sistema en formato de tabla y texto.
- * 
- * @author TuNombre
- * @version 1.0
- */
+
 public class FrmReportesAdministrador extends JFrame {
     
     private final GestorBanco gestorBanco;
@@ -43,7 +37,7 @@ public class FrmReportesAdministrador extends JFrame {
         panelPrincipal.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         
         // Título
-        JLabel lblTitulo = new JLabel("📊 REPORTES Y ESTADÍSTICAS COMPLETAS");
+        JLabel lblTitulo = new JLabel(" REPORTES Y ESTADÍSTICAS COMPLETAS");
         lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 24));
         lblTitulo.setForeground(new Color(41, 128, 185));
         lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -53,20 +47,20 @@ public class FrmReportesAdministrador extends JFrame {
         panelPestanas.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         
         // Pestaña Resumen General
-        panelPestanas.addTab("📋 Resumen General", crearPanelResumenGeneral());
+        panelPestanas.addTab(" Resumen General", crearPanelResumenGeneral());
         
         // Pestaña Usuarios
-        panelPestanas.addTab("👥 Usuarios", crearPanelUsuarios());
+        panelPestanas.addTab(" Usuarios", crearPanelUsuarios());
         
         // Pestaña Cuentas
-        panelPestanas.addTab("🏦 Cuentas", crearPanelCuentas());
+        panelPestanas.addTab(" Cuentas", crearPanelCuentas());
         
         // Pestaña Transacciones
-        panelPestanas.addTab("💳 Transacciones", crearPanelTransacciones());
+        panelPestanas.addTab(" Transacciones", crearPanelTransacciones());
         
         // Panel botón cerrar
         JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        JButton btnCerrar = new JButton("❌ Cerrar");
+        JButton btnCerrar = new JButton(" Cerrar");
         btnCerrar.setFont(new Font("Segoe UI", Font.BOLD, 14));
         btnCerrar.setBackground(new Color(231, 76, 60));
         btnCerrar.setForeground(Color.WHITE);
@@ -98,7 +92,7 @@ public class FrmReportesAdministrador extends JFrame {
         resumen.append(String.format("Fecha de Generación: %s\n\n", new java.util.Date()));
         
         // Totales generales
-        resumen.append("📊 TOTALES GENERALES:\n");
+        resumen.append(" TOTALES GENERALES:\n");
         resumen.append(String.format("Total Usuarios:      %,d\n", gestorUsuarios.getUsuarios().size()));
         resumen.append(String.format("Total Clientes:      %,d\n", gestorUsuarios.getClientes().size()));
         resumen.append(String.format("Total Empleados:     %,d\n", gestorUsuarios.getEmpleados().size()));
@@ -108,7 +102,7 @@ public class FrmReportesAdministrador extends JFrame {
         // Dinero en el sistema
         double totalDinero = gestorBanco.getCuentas().stream()
             .mapToDouble(Cuenta::getSaldo).sum();
-        resumen.append("💰 DINERO EN EL SISTEMA:\n");
+        resumen.append(" DINERO EN EL SISTEMA:\n");
         resumen.append(String.format("Total en Cuentas:    $%,.2f\n\n", totalDinero));
         
         // Tipos de cuentas
@@ -117,7 +111,7 @@ public class FrmReportesAdministrador extends JFrame {
         long corriente = gestorBanco.getCuentas().stream()
             .filter(c -> c instanceof CuentaCorriente).count();
         
-        resumen.append("🏦 TIPOS DE CUENTAS:\n");
+        resumen.append(" TIPOS DE CUENTAS:\n");
         resumen.append(String.format("Cuentas de Ahorros:  %,d (%.1f%%)\n", ahorros, (ahorros * 100.0 / gestorBanco.getCuentas().size())));
         resumen.append(String.format("Cuentas Corriente:   %,d (%.1f%%)\n\n", corriente, (corriente * 100.0 / gestorBanco.getCuentas().size())));
         

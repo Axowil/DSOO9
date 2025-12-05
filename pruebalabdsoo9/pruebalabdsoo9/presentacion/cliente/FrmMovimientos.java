@@ -7,13 +7,6 @@ import presentacion.MainGUI;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Formulario para visualizar el historial de movimientos de una cuenta.
- * Muestra todas las transacciones registradas en formato cronológico.
- * 
- * @author TuNombre
- * @version 1.0
- */
 public class FrmMovimientos extends JFrame {
     
     private final GestorBanco gestorBanco;
@@ -52,7 +45,7 @@ public class FrmMovimientos extends JFrame {
         txtNumeroCuenta.setToolTipText("Ingrese el número de cuenta");
         panelEntrada.add(txtNumeroCuenta);
         
-        JButton btnConsultar = new JButton("🔍 Consultar Movimientos");
+        JButton btnConsultar = new JButton(" Consultar Movimientos");
         btnConsultar.setFont(new Font("Segoe UI", Font.BOLD, 14));
         btnConsultar.setBackground(new Color(52, 152, 219));
         btnConsultar.setForeground(Color.WHITE);
@@ -61,7 +54,7 @@ public class FrmMovimientos extends JFrame {
         panelEntrada.add(btnConsultar);
         
         // Área de movimientos
-        JLabel lblTituloMovimientos = new JLabel("📊 Historial de Movimientos:");
+        JLabel lblTituloMovimientos = new JLabel(" Historial de Movimientos:");
         lblTituloMovimientos.setFont(new Font("Segoe UI", Font.BOLD, 16));
         lblTituloMovimientos.setForeground(new Color(41, 128, 185));
         
@@ -77,19 +70,19 @@ public class FrmMovimientos extends JFrame {
         JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
         panelBotones.setBackground(new Color(245, 245, 245));
         
-        JButton btnExportar = new JButton("📥 Exportar");
+        JButton btnExportar = new JButton(" Exportar");
         btnExportar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         btnExportar.setToolTipText("Función disponible próximamente");
         btnExportar.addActionListener(e -> JOptionPane.showMessageDialog(this, 
             "🚧 Función de exportación en desarrollo", "Próximamente", JOptionPane.INFORMATION_MESSAGE));
         panelBotones.add(btnExportar);
         
-        JButton btnLimpiar = new JButton("🧹 Limpiar");
+        JButton btnLimpiar = new JButton(" Limpiar");
         btnLimpiar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         btnLimpiar.addActionListener(e -> limpiar());
         panelBotones.add(btnLimpiar);
         
-        JButton btnCerrar = new JButton("❌ Cerrar");
+        JButton btnCerrar = new JButton(" Cerrar");
         btnCerrar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         btnCerrar.setBackground(new Color(231, 76, 60));
         btnCerrar.setForeground(Color.WHITE);
@@ -113,7 +106,7 @@ public class FrmMovimientos extends JFrame {
         
         if (numeroCuenta.isEmpty()) {
             JOptionPane.showMessageDialog(this, 
-                "⚠️ Debe ingresar un número de cuenta", 
+                " Debe ingresar un número de cuenta", 
                 "Error de Validación", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -146,7 +139,7 @@ public class FrmMovimientos extends JFrame {
             txtMovimientos.setCaretPosition(0); // Scroll al inicio
         } else {
             JOptionPane.showMessageDialog(this, 
-                "❌ Cuenta no encontrada\n" +
+                " Cuenta no encontrada\n" +
                 "Verifique el número de cuenta y sus permisos.", 
                 "Error", JOptionPane.ERROR_MESSAGE);
             txtMovimientos.setText("");

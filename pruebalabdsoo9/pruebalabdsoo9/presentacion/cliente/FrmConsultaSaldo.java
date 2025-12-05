@@ -132,7 +132,7 @@ public class FrmConsultaSaldo extends JFrame {
         // Validación básica
         if (numeroCuenta.isEmpty()) {
             JOptionPane.showMessageDialog(this, 
-                "⚠️ Debe ingresar un número de cuenta", 
+                " Debe ingresar un número de cuenta", 
                 "Error de Validación", JOptionPane.WARNING_MESSAGE);
             return;
         }

@@ -23,7 +23,7 @@ public class FrmGestionCompletaAdmin extends JFrame {
         p.setBorder(BorderFactory.createEmptyBorder(25, 25, 25, 25));
         p.setBackground(new Color(236, 240, 241));
 
-        JLabel tit = new JLabel("⚙️ Gestión Completa del Sistema");
+        JLabel tit = new JLabel(" Gestión Completa del Sistema");
         tit.setFont(new Font("Segoe UI", Font.BOLD, 26));
         tit.setForeground(new Color(44, 62, 80));
         tit.setHorizontalAlignment(SwingConstants.CENTER);
@@ -31,12 +31,12 @@ public class FrmGestionCompletaAdmin extends JFrame {
         JPanel cards = new JPanel(new GridLayout(2, 3, 20, 20));
         cards.setOpaque(false);
 
-        cards.add(crearCard("👥 Total usuarios", String.valueOf(gb.getGestorUsuarios().getUsuarios().size()), new Color(52, 152, 219)));
-        cards.add(crearCard("🏦 Total cuentas", String.valueOf(gb.getCuentas().size()), new Color(46, 204, 113)));
-        cards.add(crearCard("💰 Dinero en sistema", String.format("$%,.2f", gb.getCuentas().stream().mapToDouble(c -> c.getSaldo()).sum()), new Color(241, 196, 15)));
-        cards.add(crearCard("📊 Transacciones", String.valueOf(gb.getTransacciones().size()), new Color(155, 89, 182)));
-        cards.add(crearCard("💳 Ahorros", String.valueOf(gb.getCuentas().stream().filter(c -> c instanceof CuentaAhorros).count()), new Color(26, 188, 156)));
-        cards.add(crearCard("💸 Corrientes", String.valueOf(gb.getCuentas().stream().filter(c -> c instanceof CuentaCorriente).count()), new Color(230, 126, 34)));
+        cards.add(crearCard(" Total usuarios", String.valueOf(gb.getGestorUsuarios().getUsuarios().size()), new Color(52, 152, 219)));
+        cards.add(crearCard(" Total cuentas", String.valueOf(gb.getCuentas().size()), new Color(46, 204, 113)));
+        cards.add(crearCard(" Dinero en sistema", String.format("$%,.2f", gb.getCuentas().stream().mapToDouble(c -> c.getSaldo()).sum()), new Color(241, 196, 15)));
+        cards.add(crearCard(" Transacciones", String.valueOf(gb.getTransacciones().size()), new Color(155, 89, 182)));
+        cards.add(crearCard(" Ahorros", String.valueOf(gb.getCuentas().stream().filter(c -> c instanceof CuentaAhorros).count()), new Color(26, 188, 156)));
+        cards.add(crearCard(" Corrientes", String.valueOf(gb.getCuentas().stream().filter(c -> c instanceof CuentaCorriente).count()), new Color(230, 126, 34)));
 
         p.add(tit, BorderLayout.NORTH);
         p.add(cards, BorderLayout.CENTER);
