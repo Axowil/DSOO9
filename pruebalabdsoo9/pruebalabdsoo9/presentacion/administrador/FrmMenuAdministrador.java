@@ -105,7 +105,7 @@ public class FrmMenuAdministrador extends JFrame {
     }
     
     private void abrirReportesAdmin() {
-        new FrmGestionCompletaAdmin().setVisible(true); 
+        new FrmReportesAdministrador().setVisible(true);
     }
     
     private void abrirAuditoria() {

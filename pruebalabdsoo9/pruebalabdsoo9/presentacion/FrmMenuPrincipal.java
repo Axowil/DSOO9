@@ -436,7 +436,7 @@ private void abrirGestionEmpleados() {
 }
     
    private void abrirReportesAdmin() {
-    new presentacion.administrador.FrmGestionCompletaAdmin().setVisible(true);   // re-usamos el dashboard
+    new presentacion.administrador.FrmReportesAdministrador().setVisible(true);
 }
     
     private void abrirAuditoria() {
