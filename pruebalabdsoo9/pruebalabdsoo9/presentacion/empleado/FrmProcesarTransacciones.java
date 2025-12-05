@@ -7,13 +7,6 @@ import presentacion.MainGUI;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Formulario para que el empleado procese transacciones en nombre de clientes.
- * Proporciona acceso a depósitos, retiros y transferencias.
- * 
- * @author TuNombre
- * @version 1.0
- */
 public class FrmProcesarTransacciones extends JFrame {
     
     private final GestorBanco gestorBanco;
@@ -37,7 +30,7 @@ public class FrmProcesarTransacciones extends JFrame {
         JPanel panelPrincipal = new JPanel(new BorderLayout(15, 15));
         panelPrincipal.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         
-        JLabel lblTitulo = new JLabel("💳 PROCESAR TRANSACCIONES PARA CLIENTES");
+        JLabel lblTitulo = new JLabel(" PROCESAR TRANSACCIONES PARA CLIENTES");
         lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 22));
         lblTitulo.setForeground(new Color(41, 128, 185));
         lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -48,18 +41,18 @@ public class FrmProcesarTransacciones extends JFrame {
         
         // Pestaña Depósito
         JPanel panelDeposito = crearPanelDeposito();
-        panelPestanas.addTab("💵 Depósito", panelDeposito);
+        panelPestanas.addTab(" Depósito", panelDeposito);
         
         // Pestaña Retiro
         JPanel panelRetiro = crearPanelRetiro();
-        panelPestanas.addTab("💸 Retiro", panelRetiro);
+        panelPestanas.addTab(" Retiro", panelRetiro);
         
         // Pestaña Transferencia
         JPanel panelTransferencia = crearPanelTransferencia();
-        panelPestanas.addTab("📤 Transferencia", panelTransferencia);
+        panelPestanas.addTab(" Transferencia", panelTransferencia);
         
         // Botón cerrar
-        JButton btnCerrar = new JButton("❌ Cerrar");
+        JButton btnCerrar = new JButton(" Cerrar");
         btnCerrar.setFont(new Font("Segoe UI", Font.BOLD, 14));
         btnCerrar.setBackground(new Color(231, 76, 60));
         btnCerrar.setForeground(Color.WHITE);
@@ -108,7 +101,7 @@ public class FrmProcesarTransacciones extends JFrame {
         panel.add(txtDescripcion, gbc);
         
         // Botón procesar
-        JButton btnProcesar = new JButton("✅ Procesar Depósito");
+        JButton btnProcesar = new JButton(" Procesar Depósito");
         btnProcesar.setFont(new Font("Segoe UI", Font.BOLD, 14));
         btnProcesar.setBackground(new Color(39, 174, 96));
         btnProcesar.setForeground(Color.WHITE);
@@ -184,7 +177,7 @@ public class FrmProcesarTransacciones extends JFrame {
         panel.add(txtUbicacion, gbc);
         
         // Botón procesar
-        JButton btnProcesar = new JButton("✅ Procesar Retiro");
+        JButton btnProcesar = new JButton(" Procesar Retiro");
         btnProcesar.setFont(new Font("Segoe UI", Font.BOLD, 14));
         btnProcesar.setBackground(new Color(231, 76, 60));
         btnProcesar.setForeground(Color.WHITE);
@@ -268,7 +261,7 @@ public class FrmProcesarTransacciones extends JFrame {
         panel.add(txtReferencia, gbc);
         
         // Botón procesar
-        JButton btnProcesar = new JButton("✅ Procesar Transferencia");
+        JButton btnProcesar = new JButton(" Procesar Transferencia");
         btnProcesar.setFont(new Font("Segoe UI", Font.BOLD, 14));
         btnProcesar.setBackground(new Color(52, 152, 219));
         btnProcesar.setForeground(Color.WHITE);

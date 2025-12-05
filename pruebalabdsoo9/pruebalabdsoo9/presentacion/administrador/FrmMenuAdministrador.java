@@ -2,13 +2,9 @@ package presentacion.administrador;
 
 import gestor.GestorBanco;
 import gestor.GestorUsuarios;
-import modelo.cuentas.Cuenta;
-import modelo.personas.UsuarioAdministrador;
 import presentacion.MainGUI;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
@@ -129,19 +125,19 @@ public class FrmMenuAdministrador extends JFrame {
         permisos.append("         PERMISOS POR TIPO DE USUARIO\n");
         permisos.append("═══════════════════════════════════════════════════════\n\n");
         
-        permisos.append("👑 ADMINISTRADOR:\n");
+        permisos.append(" ADMINISTRADOR:\n");
         permisos.append("• Acceso total al sistema\n");
         permisos.append("• Gestionar usuarios, empleados y clientes\n");
         permisos.append("• Auditoría y reportes completos\n");
         permisos.append("• Configuración del sistema\n\n");
         
-        permisos.append("👔 EMPLEADO:\n");
+        permisos.append(" EMPLEADO:\n");
         permisos.append("• Gestionar clientes y cuentas\n");
         permisos.append("• Procesar transacciones\n");
         permisos.append("• Consultar información del sistema\n");
         permisos.append("• Generar reportes básicos\n\n");
         
-        permisos.append("👤 CLIENTE:\n");
+        permisos.append(" CLIENTE:\n");
         permisos.append("• Consultar saldo y movimientos\n");
         permisos.append("• Realizar depósitos, retiros y transferencias\n");
         permisos.append("• Ver información personal\n\n");
@@ -174,7 +170,7 @@ public class FrmMenuAdministrador extends JFrame {
         if (confirmacion == JOptionPane.YES_OPTION) {
             gestorUsuarios.cerrarSesion();
             JOptionPane.showMessageDialog(this, 
-                "✅ Sesión de administrador cerrada exitosamente", 
+                " Sesión de administrador cerrada exitosamente", 
                 "Cierre de Sesión", JOptionPane.INFORMATION_MESSAGE);
             
             dispose();

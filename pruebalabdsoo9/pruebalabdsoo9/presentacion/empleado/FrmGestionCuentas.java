@@ -3,8 +3,6 @@ package presentacion.empleado;
 import gestor.GestorBanco;
 import gestor.GestorUsuarios;
 import modelo.cuentas.Cuenta;
-import modelo.cuentas.CuentaAhorros;
-import modelo.cuentas.CuentaCorriente;
 import modelo.personas.Cliente;
 import presentacion.MainGUI;
 
@@ -14,13 +12,6 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
 
-/**
- * Formulario para gestión de cuentas bancarias.
- * Permite crear cuentas de ahorros y corrientes, y ver todas las cuentas.
- * 
- * @author TuNombre
- * @version 1.0
- */
 public class FrmGestionCuentas extends JFrame {
     
     private final GestorBanco gestorBanco;
@@ -128,17 +119,17 @@ public class FrmGestionCuentas extends JFrame {
         // Panel inferior - Botones
         JPanel panelInferior = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
         
-        JButton btnActualizar = new JButton("🔄 Actualizar Lista");
+        JButton btnActualizar = new JButton(" Actualizar Lista");
         btnActualizar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         btnActualizar.addActionListener(e -> cargarCuentas());
         panelInferior.add(btnActualizar);
         
-        JButton btnVerDetalles = new JButton("📄 Ver Detalles");
+        JButton btnVerDetalles = new JButton(" Ver Detalles");
         btnVerDetalles.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         btnVerDetalles.addActionListener(e -> verDetallesCuenta());
         panelInferior.add(btnVerDetalles);
         
-        JButton btnCerrar = new JButton("❌ Cerrar");
+        JButton btnCerrar = new JButton(" Cerrar");
         btnCerrar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         btnCerrar.setBackground(new Color(231, 76, 60));
         btnCerrar.setForeground(Color.WHITE);
@@ -153,11 +144,8 @@ public class FrmGestionCuentas extends JFrame {
         add(panelPrincipal);
     }
     
-    /**
-     * Carga todas las cuentas en la tabla.
-     */
     private void cargarCuentas() {
-        modeloTabla.setRowCount(0); // Limpiar tabla
+        modeloTabla.setRowCount(0); 
         
         List<Cuenta> cuentas = gestorBanco.getCuentas();
         
@@ -186,7 +174,7 @@ public class FrmGestionCuentas extends JFrame {
         // Validaciones
         if (numeroCuenta.isEmpty() || dni.isEmpty() || saldoStr.isEmpty()) {
             JOptionPane.showMessageDialog(this, 
-                "⚠️ Debe completar todos los campos", 
+                " Debe completar todos los campos", 
                 "Error de Validación", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -196,13 +184,13 @@ public class FrmGestionCuentas extends JFrame {
             saldoInicial = Double.parseDouble(saldoStr);
             if (saldoInicial < 0) {
                 JOptionPane.showMessageDialog(this, 
-                    "⚠️ El saldo inicial no puede ser negativo", 
+                    " El saldo inicial no puede ser negativo", 
                     "Error", JOptionPane.WARNING_MESSAGE);
                 return;
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, 
-                "⚠️ El saldo debe ser un número válido", 
+                " El saldo debe ser un número válido", 
                 "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -212,7 +200,7 @@ public class FrmGestionCuentas extends JFrame {
         
         if (cliente == null) {
             JOptionPane.showMessageDialog(this, 
-                "❌ Cliente no encontrado\n\n" +
+                " Cliente no encontrado\n\n" +
                 "No existe un cliente con DNI: " + dni, 
                 "Error", JOptionPane.ERROR_MESSAGE);
             return;
@@ -221,7 +209,7 @@ public class FrmGestionCuentas extends JFrame {
         // Verificar si la cuenta ya existe
         if (gestorBanco.existeCuenta(numeroCuenta)) {
             JOptionPane.showMessageDialog(this, 
-                "❌ Error: Ya existe una cuenta con ese número", 
+                " Error: Ya existe una cuenta con ese número", 
                 "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -255,7 +243,7 @@ public class FrmGestionCuentas extends JFrame {
         
         if (filaSeleccionada == -1) {
             JOptionPane.showMessageDialog(this, 
-                "⚠️ Debe seleccionar una cuenta de la tabla", 
+                " Debe seleccionar una cuenta de la tabla", 
                 "Error", JOptionPane.WARNING_MESSAGE);
             return;
         }

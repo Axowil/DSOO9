@@ -4,19 +4,10 @@ import gestor.GestorBanco;
 import gestor.GestorUsuarios;
 import modelo.personas.UsuarioEmpleado;
 import presentacion.MainGUI;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Menú exclusivo para Empleados del Sistema Bancario.
- * Permite gestionar clientes, cuentas y procesar transacciones.
- * 
- * @author TuNombre
- * @version 1.0
- */
 public class FrmMenuEmpleado extends JFrame {
     
     private final GestorBanco gestorBanco;
@@ -45,7 +36,7 @@ public class FrmMenuEmpleado extends JFrame {
         panel.setOpaque(false);
         
         // Título
-        JLabel lblTitulo = new JLabel("👔 MENÚ EMPLEADO");
+        JLabel lblTitulo = new JLabel(" MENÚ EMPLEADO");
         lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 28));
         lblTitulo.setAlignmentX(Component.CENTER_ALIGNMENT);
         lblTitulo.setForeground(new Color(41, 128, 185));
@@ -60,17 +51,17 @@ public class FrmMenuEmpleado extends JFrame {
         panel.add(Box.createVerticalStrut(30));
         
         // Botones del menú
-        agregarBoton(panel, "👥 Gestionar Clientes", e -> abrirGestionClientes());
-        agregarBoton(panel, "🏦 Gestionar Cuentas", e -> abrirGestionCuentas());
-        agregarBoton(panel, "💳 Procesar Transacciones", e -> abrirProcesarTransacciones());
-        agregarBoton(panel, "🔍 Consultas del Sistema", e -> abrirConsultas());
-        agregarBoton(panel, "📈 Reportes", e -> abrirReportes());
-        agregarBoton(panel, "👤 Mi Información", e -> mostrarMiInformacion());
+        agregarBoton(panel, " Gestionar Clientes", e -> abrirGestionClientes());
+        agregarBoton(panel, " Gestionar Cuentas", e -> abrirGestionCuentas());
+        agregarBoton(panel, " Procesar Transacciones", e -> abrirProcesarTransacciones());
+        agregarBoton(panel, " Consultas del Sistema", e -> abrirConsultas());
+        agregarBoton(panel, " Reportes", e -> abrirReportes());
+        agregarBoton(panel, " Mi Información", e -> mostrarMiInformacion());
         
         panel.add(Box.createVerticalGlue());
         
         // Botón de cerrar sesión
-        JButton btnCerrarSesion = new JButton("🔒 Cerrar Sesión");
+        JButton btnCerrarSesion = new JButton(" Cerrar Sesión");
         btnCerrarSesion.setFont(new Font("Segoe UI", Font.BOLD, 14));
         btnCerrarSesion.setBackground(new Color(231, 76, 60));
         btnCerrarSesion.setForeground(Color.WHITE);
@@ -184,7 +175,7 @@ public class FrmMenuEmpleado extends JFrame {
         if (confirmacion == JOptionPane.YES_OPTION) {
             gestorUsuarios.cerrarSesion();
             JOptionPane.showMessageDialog(this, 
-                "✅ Sesión de empleado cerrada exitosamente", 
+                " Sesión de empleado cerrada exitosamente", 
                 "Cierre de Sesión", JOptionPane.INFORMATION_MESSAGE);
             
             dispose();

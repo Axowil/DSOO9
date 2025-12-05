@@ -11,13 +11,6 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-/**
- * Formulario para gestión de clientes.
- * Permite ver todos los clientes, buscar por DNI y agregar nuevos clientes.
- * 
- * @author TuNombre
- * @version 1.0
- */
 public class FrmGestionClientes extends JFrame {
     
     private final GestorBanco gestorBanco;
@@ -59,26 +52,26 @@ public class FrmGestionClientes extends JFrame {
         txtBuscarDNI.setToolTipText("Ingrese DNI para buscar cliente");
         panelBusqueda.add(txtBuscarDNI);
         
-        JButton btnBuscar = new JButton("🔍 Buscar");
+        JButton btnBuscar = new JButton(" Buscar");
         btnBuscar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         btnBuscar.addActionListener(e -> buscarCliente());
         panelBusqueda.add(btnBuscar);
         
-        JButton btnMostrarTodos = new JButton("👥 Ver Todos");
+        JButton btnMostrarTodos = new JButton(" Ver Todos");
         btnMostrarTodos.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         btnMostrarTodos.addActionListener(e -> cargarClientes());
         panelBusqueda.add(btnMostrarTodos);
         
         JPanel panelAcciones = new JPanel(new FlowLayout(FlowLayout.LEFT, 15, 10));
         
-        JButton btnAgregar = new JButton("➕ Agregar Cliente");
+        JButton btnAgregar = new JButton(" Agregar Cliente");
         btnAgregar.setFont(new Font("Segoe UI", Font.BOLD, 14));
         btnAgregar.setBackground(new Color(39, 174, 96));
         btnAgregar.setForeground(Color.WHITE);
         btnAgregar.addActionListener(e -> agregarCliente());
         panelAcciones.add(btnAgregar);
         
-        JButton btnVerDetalles = new JButton("📄 Ver Detalles");
+        JButton btnVerDetalles = new JButton(" Ver Detalles");
         btnVerDetalles.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         btnVerDetalles.addActionListener(e -> verDetallesCliente());
         panelAcciones.add(btnVerDetalles);
@@ -116,7 +109,7 @@ public class FrmGestionClientes extends JFrame {
         
         // Panel botón cerrar
         JPanel panelInferior = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        JButton btnCerrar = new JButton("❌ Cerrar");
+        JButton btnCerrar = new JButton(" Cerrar");
         btnCerrar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         btnCerrar.setBackground(new Color(231, 76, 60));
         btnCerrar.setForeground(Color.WHITE);
@@ -151,7 +144,7 @@ public class FrmGestionClientes extends JFrame {
         
         if (modeloTabla.getRowCount() == 0) {
             JOptionPane.showMessageDialog(this, 
-                "ℹ️ No hay clientes registrados en el sistema", 
+                "No hay clientes registrados en el sistema", 
                 "Información", JOptionPane.INFORMATION_MESSAGE);
         }
     }
@@ -164,7 +157,7 @@ public class FrmGestionClientes extends JFrame {
         
         if (dni.isEmpty()) {
             JOptionPane.showMessageDialog(this, 
-                "⚠️ Debe ingresar un DNI para buscar", 
+                " Debe ingresar un DNI para buscar", 
                 "Error de Validación", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -189,7 +182,7 @@ public class FrmGestionClientes extends JFrame {
             }
         } else {
             JOptionPane.showMessageDialog(this, 
-                "❌ Cliente no encontrado\n\n" +
+                " Cliente no encontrado\n\n" +
                 "No existe un cliente con DNI: " + dni, 
                 "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -203,7 +196,7 @@ public class FrmGestionClientes extends JFrame {
         
         if (filaSeleccionada == -1) {
             JOptionPane.showMessageDialog(this, 
-                "⚠️ Debe seleccionar un cliente de la tabla", 
+                " Debe seleccionar un cliente de la tabla", 
                 "Error", JOptionPane.WARNING_MESSAGE);
             return;
         }

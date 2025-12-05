@@ -4,201 +4,284 @@ import gestor.GestorBanco;
 import gestor.GestorUsuarios;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
-/**
- * Formulario de inicio de sesión para el Sistema Bancario.
- * Permite autenticar usuarios según su rol: Cliente, Empleado o Administrador.
- * 
- * @author TuNombre
- * @version 1.0
- */
 public class FrmLogin extends javax.swing.JFrame {
     
     private GestorBanco gestorBanco;
     private GestorUsuarios gestorUsuarios;
     
-    /**
-     * Constructor que inicializa los componentes y configura la ventana.
-     */
+    private final Color COLOR_PRIMARY = new Color(41, 128, 185); //azul Oceano
+    private final Color COLOR_SUCCESS = new Color(46, 204, 113); //verde
+    private final Color COLOR_DANGER = new Color(231, 76, 60); //flame red
+    private final Color COLOR_DARK = new Color(44, 62, 80);
+    private final Color COLOR_WHITE = Color.WHITE;
+    
     public FrmLogin() {
         initComponents();
         this.gestorBanco = MainGUI.getGestorBanco();
         this.gestorUsuarios = gestorBanco.getGestorUsuarios();
         configurarVentana();
     }
-    
-    /**
-     * Configura propiedades de la ventana.
-     */
+
     private void configurarVentana() {
         setTitle("Sistema Bancario - Inicio de Sesión");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(450, 350);
+        setSize(500, 600);
         setResizable(false);
-        setLocationRelativeTo(null); // Centrar al iniciar
-        
-        // Icono de la aplicación (opcional)
-        // setIconImage(new ImageIcon(getClass().getResource("/iconos/banco.png")).getImage());
+        setLocationRelativeTo(null);
+        setUndecorated(false); 
     }
     
-    /**
-     * Inicializa y organiza los componentes gráficos.
-     * Usa GroupLayout para posicionamiento preciso.
-     */
     private void initComponents() {
-        // Creación de componentes
-        JLabel lblTitulo = new JLabel("INICIO DE SESIÓN");
-        lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 24));
         
-        JLabel lblUsuario = new JLabel("Usuario:");
-        lblUsuario.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+
+        JPanel panelPrincipal = new JPanel(new BorderLayout());
+        panelPrincipal.setBackground(COLOR_WHITE);
+        JPanel panelDerecho = crearPanelFormulario();
+        panelPrincipal.add(panelDerecho, BorderLayout.CENTER);
+        setContentPane(panelPrincipal);
+    }
+    
+
+    private JPanel crearPanelFormulario() {
+        JPanel panel = new JPanel();
+        panel.setBackground(COLOR_WHITE);
+        panel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.insets = new Insets(10, 40, 10, 40);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
         
-        JLabel lblContraseña = new JLabel("Contraseña:");
-        lblContraseña.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        // Título del formulario
+        JLabel lblTitulo = new JLabel("Iniciar Sesión");
+        lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 28));
+        lblTitulo.setForeground(COLOR_DARK);
+        gbc.gridy = 0;
+        gbc.insets = new Insets(40, 40, 10, 40);
+        panel.add(lblTitulo, gbc);
         
-        JLabel lblTipo = new JLabel("Tipo de Usuario:");
-        lblTipo.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+
+        JLabel lblSubtitulo = new JLabel("Ingrese sus credenciales para continuar");
+        lblSubtitulo.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        lblSubtitulo.setForeground(new Color(127, 140, 141));
+        gbc.gridy = 1;
+        gbc.insets = new Insets(0, 40, 30, 40);
+        panel.add(lblSubtitulo, gbc);
         
-        JTextField txtUsuario = new JTextField(20);
-        txtUsuario.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        // Campo Usuario
+        JLabel lblUsuario = new JLabel("Usuario");
+        lblUsuario.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        lblUsuario.setForeground(COLOR_DARK);
+        gbc.gridy = 2;
+        gbc.insets = new Insets(10, 40, 5, 40);
+        panel.add(lblUsuario, gbc);
+        
+        JTextField txtUsuario = crearCampoTextoEstilizado();
         txtUsuario.setToolTipText("Ingrese su nombre de usuario");
+        gbc.gridy = 3;
+        gbc.insets = new Insets(0, 40, 15, 40);
+        panel.add(txtUsuario, gbc);
         
-        JPasswordField txtContraseña = new JPasswordField(20);
-        txtContraseña.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        // Campo Contraseña
+        JLabel lblContraseña = new JLabel("Contraseña");
+        lblContraseña.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        lblContraseña.setForeground(COLOR_DARK);
+        gbc.gridy = 4;
+        gbc.insets = new Insets(10, 40, 5, 40);
+        panel.add(lblContraseña, gbc);
+        
+        JPasswordField txtContraseña = crearCampoPasswordEstilizado();
         txtContraseña.setToolTipText("Ingrese su contraseña");
+        gbc.gridy = 5;
+        gbc.insets = new Insets(0, 40, 15, 40);
+        panel.add(txtContraseña, gbc);
         
-        JComboBox<String> cmbTipoUsuario = new JComboBox<>(new String[]{"CLIENTE", "EMPLEADO", "ADMINISTRADOR"});
-        cmbTipoUsuario.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        // Campo Tipo Usuario
+        JLabel lblTipo = new JLabel("Tipo de Usuario");
+        lblTipo.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        lblTipo.setForeground(COLOR_DARK);
+        gbc.gridy = 6;
+        gbc.insets = new Insets(10, 40, 5, 40);
+        panel.add(lblTipo, gbc);
         
-        JButton btnIngresar = new JButton("🔐 Ingresar");
-        btnIngresar.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        btnIngresar.setBackground(new Color(46, 204, 113));
-        btnIngresar.setForeground(Color.WHITE);
+        JComboBox<String> cmbTipoUsuario = crearComboEstilizado();
+        gbc.gridy = 7;
+        gbc.insets = new Insets(0, 40, 25, 40);
+        panel.add(cmbTipoUsuario, gbc);
         
-        JButton btnSalir = new JButton("🚪 Salir");
-        btnSalir.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        btnSalir.setBackground(new Color(231, 76, 60));
-        btnSalir.setForeground(Color.WHITE);
+        // Panel de botones
+        JPanel panelBotones = new JPanel(new GridLayout(1, 2, 15, 0));
+        panelBotones.setBackground(COLOR_WHITE);
         
-        // Configuración del layout
-        GroupLayout layout = new GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setAutoCreateGaps(true);
-        layout.setAutoCreateContainerGaps(true);
+        JButton btnIngresar = crearBotonEstilizado("Ingresar", COLOR_SUCCESS);
+        JButton btnSalir = crearBotonEstilizado("Salir", COLOR_DANGER);
         
-        // Layout Horizontal
-        layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
-            .addComponent(lblTitulo)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lblUsuario)
-                    .addComponent(lblContraseña)
-                    .addComponent(lblTipo))
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(txtUsuario, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtContraseña, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbTipoUsuario, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(btnIngresar, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
-                .addComponent(btnSalir, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE))
-        );
+        panelBotones.add(btnIngresar);
+        panelBotones.add(btnSalir);
         
-        // Layout Vertical
-        layout.setVerticalGroup(layout.createSequentialGroup()
-            .addComponent(lblTitulo)
-            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED, 30, 30)
-            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                .addComponent(lblUsuario)
-                .addComponent(txtUsuario, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                .addComponent(lblContraseña)
-                .addComponent(txtContraseña, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                .addComponent(lblTipo)
-                .addComponent(cmbTipoUsuario, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED, 30, 30)
-            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                .addComponent(btnIngresar, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                .addComponent(btnSalir, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
-        );
+        gbc.gridy = 8;
+        gbc.insets = new Insets(10, 40, 40, 40);
+        panel.add(panelBotones, gbc);
         
-        // Eventos de los botones
-        btnIngresar.addActionListener(new ActionListener() {
+        // Eventos
+        btnIngresar.addActionListener(e -> procesarIngreso(txtUsuario, txtContraseña, cmbTipoUsuario));
+        btnSalir.addActionListener(e -> System.exit(0));
+        
+        // Enter para ingresar
+        KeyAdapter enterListener = new KeyAdapter() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                procesarIngreso(txtUsuario, txtContraseña, cmbTipoUsuario);
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    procesarIngreso(txtUsuario, txtContraseña, cmbTipoUsuario);
+                }
             }
-        });
+        };
+        txtUsuario.addKeyListener(enterListener);
+        txtContraseña.addKeyListener(enterListener);
         
-        btnSalir.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
+        return panel;
     }
     
     /**
-     * Procesa el intento de inicio de sesión.
-     * Valida campos, autentica y abre el menú correspondiente.
+     * Crea un campo de texto estilizado
      */
+    private JTextField crearCampoTextoEstilizado() {
+        JTextField campo = new JTextField(20);
+        campo.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        campo.setPreferredSize(new Dimension(300, 40));
+        campo.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(new Color(189, 195, 199), 1),
+            BorderFactory.createEmptyBorder(5, 10, 5, 10)
+        ));
+        
+        // Efecto focus
+        campo.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                campo.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(COLOR_PRIMARY, 2),
+                    BorderFactory.createEmptyBorder(5, 10, 5, 10)
+                ));
+            }
+            
+            @Override
+            public void focusLost(FocusEvent e) {
+                campo.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(189, 195, 199), 1),
+                    BorderFactory.createEmptyBorder(5, 10, 5, 10)
+                ));
+            }
+        });
+        
+        return campo;
+    }
+    
+    
+    private JPasswordField crearCampoPasswordEstilizado() {
+        JPasswordField campo = new JPasswordField(20);
+        campo.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        campo.setPreferredSize(new Dimension(300, 40));
+        campo.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(new Color(189, 195, 199), 1),
+            BorderFactory.createEmptyBorder(5, 10, 5, 10)
+        ));
+        
+        campo.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                campo.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(COLOR_PRIMARY, 2),
+                    BorderFactory.createEmptyBorder(5, 10, 5, 10)
+                ));
+            }
+            
+            @Override
+            public void focusLost(FocusEvent e) {
+                campo.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(189, 195, 199), 1),
+                    BorderFactory.createEmptyBorder(5, 10, 5, 10)
+                ));
+            }
+        });
+        
+        return campo;
+    }
+    
+    private JComboBox<String> crearComboEstilizado() {
+        JComboBox<String> combo = new JComboBox<>(new String[]{"CLIENTE", "EMPLEADO", "ADMINISTRADOR"});
+        combo.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        combo.setPreferredSize(new Dimension(300, 40));
+        combo.setBackground(COLOR_WHITE);
+        combo.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(new Color(189, 195, 199), 1),
+            BorderFactory.createEmptyBorder(5, 10, 5, 10)
+        ));
+        return combo;
+    }
+    private JButton crearBotonEstilizado(String texto, Color colorFondo) {
+        JButton boton = new JButton(texto);
+        boton.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        boton.setPreferredSize(new Dimension(140, 45));
+        boton.setBackground(colorFondo);
+        boton.setForeground(COLOR_WHITE);
+        boton.setFocusPainted(false);
+        boton.setBorderPainted(false);
+        boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        boton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                boton.setBackground(colorFondo.brighter());
+            }
+            
+            @Override
+            public void mouseExited(MouseEvent e) {
+                boton.setBackground(colorFondo);
+            }
+        });
+        
+        return boton;
+    }
+
     private void procesarIngreso(JTextField txtUsuario, JPasswordField txtContraseña, JComboBox<String> cmbTipo) {
         String usuario = txtUsuario.getText().trim();
         String contraseña = new String(txtContraseña.getPassword());
         String tipoSeleccionado = cmbTipo.getSelectedItem().toString();
         
-        // Validación de campos vacíos
         if (usuario.isEmpty() || contraseña.isEmpty()) {
-            JOptionPane.showMessageDialog(this, 
-                "⚠️ Debe completar todos los campos", 
-                "Error de Validación", 
-                JOptionPane.WARNING_MESSAGE);
+            mostrarMensaje("Por favor, complete todos los campos", "Campos Incompletos", JOptionPane.WARNING_MESSAGE);
             return;
         }
         
         try {
-            // Intentar autenticación
             if (gestorUsuarios.autenticarUsuario(usuario, contraseña)) {
                 String tipoUsuarioActual = gestorUsuarios.getTipoUsuarioActual();
                 
-                // Verificar que el tipo coincida con la selección
                 if (tipoUsuarioActual.equals(tipoSeleccionado)) {
-                    JOptionPane.showMessageDialog(this, 
-                        "🎉 ¡Bienvenido " + usuario + "!", 
-                        "Autenticación Exitosa", 
-                        JOptionPane.INFORMATION_MESSAGE);
-                    
-                    // Abrir menú principal correspondiente
+                    mostrarMensaje("¡Bienvenido " + usuario + "!", "Acceso Concedido", JOptionPane.INFORMATION_MESSAGE);
                     abrirMenuPrincipal(tipoUsuarioActual);
-                    dispose(); // Cerrar ventana de login
+                    dispose();
                 } else {
-                    JOptionPane.showMessageDialog(this, 
-                        "❌ Error: No tiene permisos para ingresar como " + tipoSeleccionado + "\n" +
+                    mostrarMensaje(
+                        "No tiene permisos para ingresar como " + tipoSeleccionado + "\n" +
                         "Su tipo de usuario es: " + tipoUsuarioActual, 
-                        "Error de Permisos", 
-                        JOptionPane.ERROR_MESSAGE);
+                        "Permisos Insuficientes", 
+                        JOptionPane.ERROR_MESSAGE
+                    );
                     gestorUsuarios.cerrarSesion();
                 }
             } else {
-                JOptionPane.showMessageDialog(this, 
-                    "❌ Credenciales incorrectas o usuario inactivo", 
-                    "Error de Autenticación", 
-                    JOptionPane.ERROR_MESSAGE);
+                mostrarMensaje("Usuario o contraseña incorrectos", "Error de Autenticación", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, 
-                "⚠️ Error inesperado: " + ex.getMessage(), 
-                "Error", 
-                JOptionPane.ERROR_MESSAGE);
+            mostrarMensaje("Error inesperado: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
     }
     
-    /**
-     * Abre el menú principal según el tipo de usuario.
-     */
+    private void mostrarMensaje(String mensaje, String titulo, int tipo) {
+        JOptionPane.showMessageDialog(this, mensaje, titulo, tipo);
+    }
     private void abrirMenuPrincipal(String tipoUsuario) {
         FrmMenuPrincipal menu = new FrmMenuPrincipal(tipoUsuario);
         menu.setVisible(true);

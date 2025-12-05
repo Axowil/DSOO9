@@ -9,13 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Formulario para consultar el saldo de una cuenta bancaria.
- * Llama directamente a la lógica existente del sistema.
- * 
- * @author TuNombre
- * @version 1.0
- */
+
 public class FrmConsultaSaldo extends JFrame {
     
     private final GestorBanco gestorBanco;
@@ -50,7 +44,7 @@ public class FrmConsultaSaldo extends JFrame {
         panelPrincipal.setBackground(new Color(240, 248, 255));
         
         // Título
-        JLabel lblTitulo = new JLabel("💰 CONSULTA DE SALDO");
+        JLabel lblTitulo = new JLabel(" CONSULTA DE SALDO");
         lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 24));
         lblTitulo.setForeground(new Color(41, 128, 185));
         lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -68,7 +62,7 @@ public class FrmConsultaSaldo extends JFrame {
         txtNumeroCuenta.setToolTipText("Ingrese el número de cuenta a consultar");
         panelEntrada.add(txtNumeroCuenta);
         
-        btnConsultar = new JButton("🔍 Consultar");
+        btnConsultar = new JButton(" Consultar");
         btnConsultar.setFont(new Font("Segoe UI", Font.BOLD, 14));
         btnConsultar.setBackground(new Color(52, 152, 219));
         btnConsultar.setForeground(Color.WHITE);
@@ -92,12 +86,12 @@ public class FrmConsultaSaldo extends JFrame {
         JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
         panelBotones.setBackground(new Color(240, 248, 255));
         
-        JButton btnLimpiar = new JButton("🧹 Limpiar");
+        JButton btnLimpiar = new JButton(" Limpiar");
         btnLimpiar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         btnLimpiar.addActionListener(e -> limpiar());
         panelBotones.add(btnLimpiar);
         
-        JButton btnCerrar = new JButton("❌ Cerrar");
+        JButton btnCerrar = new JButton(" Cerrar");
         btnCerrar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         btnCerrar.setBackground(new Color(231, 76, 60));
         btnCerrar.setForeground(Color.WHITE);
@@ -153,7 +147,7 @@ if (actual instanceof modelo.personas.UsuarioCliente) {
                 var cliente = ((modelo.personas.UsuarioCliente)actual).getCliente();
                 if (!cliente.getCuentasAsociadas().contains(numeroCuenta)) {
                     JOptionPane.showMessageDialog(this, 
-                        "❌ No tiene permiso para consultar esta cuenta", 
+                        " No tiene permiso para consultar esta cuenta", 
                         "Error de Permisos", JOptionPane.ERROR_MESSAGE);
                     txtResultado.setText("");
                     return;
@@ -178,7 +172,7 @@ if (actual instanceof modelo.personas.UsuarioCliente) {
             txtResultado.setCaretPosition(0);
         } else {
             JOptionPane.showMessageDialog(this, 
-                "❌ Cuenta no encontrada\n" +
+                " Cuenta no encontrada\n" +
                 "Verifique el número de cuenta ingresado.", 
                 "Error", JOptionPane.ERROR_MESSAGE);
             txtResultado.setText("");

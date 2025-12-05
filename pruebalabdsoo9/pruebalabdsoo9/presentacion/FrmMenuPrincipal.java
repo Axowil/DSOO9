@@ -3,7 +3,6 @@ package presentacion;
 import gestor.GestorBanco;
 import gestor.GestorUsuarios;
 import modelo.cuentas.Cuenta;
-import modelo.personas.Usuario;
 import modelo.personas.UsuarioCliente;
 import presentacion.cliente.FrmConsultaSaldo;
 import presentacion.cliente.FrmDeposito;
@@ -13,28 +12,15 @@ import presentacion.cliente.FrmTransferenciaCliente;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Scanner;
 
-/**
- * Menú principal del sistema bancario.
- * Muestra opciones dinámicamente según el rol del usuario autenticado.
- * 
- * @author TuNombre
- * @version 1.0
- */
 public class FrmMenuPrincipal extends javax.swing.JFrame {
     
     private String tipoUsuario;
     private GestorBanco gestorBanco;
     private GestorUsuarios gestorUsuarios;
     
-    /**
-     * Constructor que inicializa el menú según el rol del usuario.
-     * 
-     * @param tipoUsuario Rol del usuario: CLIENTE, EMPLEADO o ADMINISTRADOR
-     */
     public FrmMenuPrincipal(String tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
         this.gestorBanco = MainGUI.getGestorBanco();
@@ -44,9 +30,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         configurarMenuPorRol();
     }
     
-    /**
-     * Configura propiedades básicas de la ventana.
-     */
     private void configurarVentana() {
         setTitle("Sistema Bancario - Menú " + tipoUsuario);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,9 +38,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
-    /**
-     * Ajusta el título y otros elementos según el rol.
-     */
     private void configurarMenuPorRol() {
         String titulo = "MENÚ PRINCIPAL - ";
         switch (tipoUsuario) {
@@ -76,10 +56,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         setTitle(titulo);
     }
     
-    /**
-     * Inicializa y organiza los componentes gráficos.
-     * Usa BoxLayout para organización vertical de botones.
-     */
     private void initComponents() {
         // Panel principal con padding
         JPanel panelPrincipal = new JPanel();
@@ -105,38 +81,38 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         // Botones según el rol
         switch (tipoUsuario) {
             case "CLIENTE":
-                agregarBoton(panelPrincipal, "💰 Consultar Saldo", e -> abrirConsultaSaldo());
-                agregarBoton(panelPrincipal, "💵 Realizar Depósito", e -> abrirDeposito());
-                agregarBoton(panelPrincipal, "💸 Realizar Retiro", e -> abrirRetiro());
-                agregarBoton(panelPrincipal, "📤 Realizar Transferencia", e -> abrirTransferencia());
-                agregarBoton(panelPrincipal, "📊 Ver Movimientos", e -> abrirMovimientos());
-                agregarBoton(panelPrincipal, "👤 Ver Mis Cuentas", e -> mostrarMisCuentas());
-                agregarBoton(panelPrincipal, "👤 Ver Mi Información", e -> mostrarMiInformacion());
+                agregarBoton(panelPrincipal, " Consultar Saldo", e -> abrirConsultaSaldo());
+                agregarBoton(panelPrincipal, " Realizar Depósito", e -> abrirDeposito());
+                agregarBoton(panelPrincipal, " Realizar Retiro", e -> abrirRetiro());
+                agregarBoton(panelPrincipal, " Realizar Transferencia", e -> abrirTransferencia());
+                agregarBoton(panelPrincipal, " Ver Movimientos", e -> abrirMovimientos());
+                agregarBoton(panelPrincipal, " Ver Mis Cuentas", e -> mostrarMisCuentas());
+                agregarBoton(panelPrincipal, " Ver Mi Información", e -> mostrarMiInformacion());
                 break;
                 
             case "EMPLEADO":
-                agregarBoton(panelPrincipal, "👥 Gestionar Clientes", e -> abrirGestionClientes());
-                agregarBoton(panelPrincipal, "🏦 Gestionar Cuentas", e -> abrirGestionCuentas());
-                agregarBoton(panelPrincipal, "💳 Procesar Transacciones", e -> abrirTransacciones());
-                agregarBoton(panelPrincipal, "🔍 Consultas del Sistema", e -> abrirConsultas());
-                agregarBoton(panelPrincipal, "📈 Reportes y Estadísticas", e -> abrirReportes());
-                agregarBoton(panelPrincipal, "👤 Ver Mi Información", e -> mostrarMiInformacion());
+                agregarBoton(panelPrincipal, " Gestionar Clientes", e -> abrirGestionClientes());
+                agregarBoton(panelPrincipal, " Gestionar Cuentas", e -> abrirGestionCuentas());
+                agregarBoton(panelPrincipal, " Procesar Transacciones", e -> abrirTransacciones());
+                agregarBoton(panelPrincipal, " Consultas del Sistema", e -> abrirConsultas());
+                agregarBoton(panelPrincipal, " Reportes y Estadísticas", e -> abrirReportes());
+                agregarBoton(panelPrincipal, " Ver Mi Información", e -> mostrarMiInformacion());
                 break;
                 
             case "ADMINISTRADOR":
-                agregarBoton(panelPrincipal, "👤 Gestionar Usuarios", e -> abrirGestionUsuarios());
-                agregarBoton(panelPrincipal, "👔 Gestionar Empleados", e -> abrirGestionEmpleados());
-                agregarBoton(panelPrincipal, "⚙️ Gestión Completa del Sistema", e -> abrirGestionCompleta());
-                agregarBoton(panelPrincipal, "📊 Reportes y Estadísticas", e -> abrirReportesAdmin());
-                agregarBoton(panelPrincipal, "🛡️ Auditoría del Sistema", e -> abrirAuditoria());
-                agregarBoton(panelPrincipal, "🔐 Ver Todos los Permisos", e -> mostrarTodosPermisos());
+                agregarBoton(panelPrincipal, " Gestionar Usuarios", e -> abrirGestionUsuarios());
+                agregarBoton(panelPrincipal, " Gestionar Empleados", e -> abrirGestionEmpleados());
+                agregarBoton(panelPrincipal, " Gestión Completa del Sistema", e -> abrirGestionCompleta());
+                agregarBoton(panelPrincipal, " Reportes y Estadísticas", e -> abrirReportesAdmin());
+                agregarBoton(panelPrincipal, " Auditoría del Sistema", e -> abrirAuditoria());
+                agregarBoton(panelPrincipal, " Ver Todos los Permisos", e -> mostrarTodosPermisos());
                 break;
         }
         
         panelPrincipal.add(Box.createVerticalGlue());
         
         // Botón de cerrar sesión
-        JButton btnCerrarSesion = new JButton("🔒 Cerrar Sesión");
+        JButton btnCerrarSesion = new JButton(" Cerrar Sesión");
         btnCerrarSesion.setFont(new Font("Segoe UI", Font.BOLD, 14));
         btnCerrarSesion.setBackground(new Color(231, 76, 60));
         btnCerrarSesion.setForeground(Color.WHITE);
@@ -148,9 +124,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         setContentPane(panelPrincipal);
     }
     
-    /**
-     * Agrega un botón al panel con estilo consistente.
-     */
     private void agregarBoton(JPanel panel, String texto, ActionListener accion) {
         JButton boton = new JButton(texto);
         boton.setFont(new Font("Segoe UI", Font.PLAIN, 16));
@@ -296,7 +269,7 @@ private void abrirGestionClientes() {
             JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
 
     switch (op) {
-        case 0 -> gestorBanco.getGestorUsuarios().mostrarTodosLosClientes(); // consola por ahora
+        case 0 -> gestorBanco.getGestorUsuarios().mostrarTodosLosClientes(); 
         case 1 -> buscarClientePorDni();
         case 2 -> agregarClienteInteractivo();
     }
@@ -473,7 +446,7 @@ private void abrirGestionEmpleados() {
         textArea.setEditable(false);
         
         StringBuilder auditoria = new StringBuilder();
-        auditoria.append("🔍 AUDITORÍA DEL SISTEMA\n\n");
+        auditoria.append(" AUDITORÍA DEL SISTEMA\n\n");
         auditoria.append("Fecha: ").append(new java.util.Date()).append("\n");
         auditoria.append("Usuario actual: ").append(gestorUsuarios.getUsuarioActual().getNombreUsuario()).append("\n\n");
         
@@ -504,7 +477,7 @@ private void abrirGestionEmpleados() {
         if (confirm == JOptionPane.YES_OPTION) {
             gestorUsuarios.cerrarSesion();
             JOptionPane.showMessageDialog(this, 
-                "✅ Sesión cerrada exitosamente", 
+                " Sesión cerrada exitosamente", 
                 "Cierre de Sesión", 
                 JOptionPane.INFORMATION_MESSAGE);
             

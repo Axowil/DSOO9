@@ -24,7 +24,7 @@ public class FrmGestionUsuarios extends JFrame {
         p.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         p.setBackground(new Color(248, 249, 250));
 
-        JLabel tit = new JLabel("👤 Gestión de Usuarios");
+        JLabel tit = new JLabel(" Gestión de Usuarios");
         tit.setFont(new Font("Segoe UI", Font.BOLD, 24));
         tit.setForeground(new Color(52, 73, 94));
         tit.setHorizontalAlignment(SwingConstants.CENTER);
@@ -45,9 +45,9 @@ public class FrmGestionUsuarios extends JFrame {
         JPanel bot = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
         bot.setOpaque(false);
 
-        JButton btnAct = new JButton("✅ Activar");
-        JButton btnDes = new JButton("❌ Desactivar");
-        JButton btnEli = new JButton("🗑️ Eliminar");
+        JButton btnAct = new JButton(" Activar");
+        JButton btnDes = new JButton(" Desactivar");
+        JButton btnEli = new JButton(" Eliminar");
         Stream.of(btnAct, btnDes, btnEli).forEach(b -> b.setFont(new Font("Segoe UI", Font.PLAIN, 14)));
         bot.add(btnAct);
         bot.add(btnDes);

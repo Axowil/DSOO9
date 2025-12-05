@@ -24,7 +24,7 @@ public class FrmGestionEmpleados extends JFrame {
         p.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         p.setBackground(new Color(248, 249, 250));
 
-        JLabel tit = new JLabel("👔 Gestión de Empleados");
+        JLabel tit = new JLabel(" Gestión de Empleados");
         tit.setFont(new Font("Segoe UI", Font.BOLD, 24));
         tit.setForeground(new Color(44, 62, 80));
         tit.setHorizontalAlignment(SwingConstants.CENTER);
@@ -48,8 +48,8 @@ public class FrmGestionEmpleados extends JFrame {
         JPanel bot = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
         bot.setOpaque(false);
 
-        JButton btnAum = new JButton("💰 Aumentar Salario");
-        JButton btnDep = new JButton("🔄 Cambiar Depto");
+        JButton btnAum = new JButton(" Aumentar Salario");
+        JButton btnDep = new JButton(" Cambiar Depto");
         JButton btnEst = new JButton("✅/❌ Toggle Estado");
         Stream.of(btnAum, btnDep, btnEst).forEach(b -> b.setFont(new Font("Segoe UI", Font.PLAIN, 14)));
         bot.add(btnAum);

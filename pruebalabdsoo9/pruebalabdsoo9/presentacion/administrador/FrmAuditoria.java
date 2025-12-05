@@ -4,19 +4,16 @@ import gestor.GestorBanco;
 import gestor.GestorUsuarios;
 import modelo.transacciones.Transaccion;
 import presentacion.MainGUI;
+import modelo.personas.Usuario;
+import modelo.cuentas.Cuenta;
+import modelo.cuentas.CuentaAhorros;
+import modelo.cuentas.CuentaCorriente;
 
 import javax.swing.*;
 import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Formulario de Auditoría del Sistema para Administradores.
- * Muestra logs de acceso, transacciones recientes y estado del sistema.
- * 
- * @author TuNombre
- * @version 1.0
- */
 public class FrmAuditoria extends JFrame {
     
     private final GestorBanco gestorBanco;
@@ -44,7 +41,7 @@ public class FrmAuditoria extends JFrame {
         panelPrincipal.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         
         // Título
-        JLabel lblTitulo = new JLabel("🛡️ AUDITORÍA DEL SISTEMA BANCARIO");
+        JLabel lblTitulo = new JLabel(" AUDITORÍA DEL SISTEMA BANCARIO");
         lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 24));
         lblTitulo.setForeground(new Color(231, 76, 60));
         lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -62,19 +59,19 @@ public class FrmAuditoria extends JFrame {
         // Panel botones
         JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
         
-        JButton btnActualizar = new JButton("🔄 Actualizar");
+        JButton btnActualizar = new JButton(" Actualizar");
         btnActualizar.setFont(new Font("Segoe UI", Font.BOLD, 14));
         btnActualizar.setBackground(new Color(39, 174, 96));
         btnActualizar.setForeground(Color.WHITE);
         btnActualizar.addActionListener(e -> generarReporteAuditoria());
         panelBotones.add(btnActualizar);
         
-        JButton btnExportar = new JButton("📥 Exportar Log");
+        JButton btnExportar = new JButton(" Exportar Log");
         btnExportar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         btnExportar.addActionListener(e -> exportarLog());
         panelBotones.add(btnExportar);
         
-        JButton btnCerrar = new JButton("❌ Cerrar");
+        JButton btnCerrar = new JButton(" Cerrar");
         btnCerrar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         btnCerrar.setBackground(new Color(231, 76, 60));
         btnCerrar.setForeground(Color.WHITE);
@@ -195,12 +192,12 @@ public class FrmAuditoria extends JFrame {
             .filter(c -> c.getSaldo() < 0).count();
         
         if (cuentasNegativas > 0) {
-            auditoria.append(String.format("⚠️  ALERTA: Encontradas %,d cuenta(s) con saldo negativo.\n\n", cuentasNegativas));
+            auditoria.append(String.format("  ALERTA: Encontradas %,d cuenta(s) con saldo negativo.\n\n", cuentasNegativas));
         }
         
         // Verificar usuarios sin actividad (inactivos)
         if (inactivos > 0) {
-            auditoria.append(String.format("⚠️  ADVERTENCIA: Existen %,d usuario(s) inactivos.\n\n", inactivos));
+            auditoria.append(String.format("  ADVERTENCIA: Existen %,d usuario(s) inactivos.\n\n", inactivos));
         }
         
         auditoria.append("═══════════════════════════════════════════════════════════════════════\n");
@@ -215,8 +212,8 @@ public class FrmAuditoria extends JFrame {
      * Exporta el log de auditoría a un archivo (simulado).
      */
     private void exportarLog() {
+
         String reporte = txtAuditoria.getText();
-        
         JOptionPane.showMessageDialog(this, 
             "🚧 Función de Exportación\n\n" +
             "En una implementación real, esto guardaría el reporte en:\n" +

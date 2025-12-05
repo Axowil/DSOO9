@@ -6,16 +6,9 @@ import modelo.personas.UsuarioCliente;
 import presentacion.MainGUI;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Menú exclusivo para Clientes del Sistema Bancario.
- * Proporciona acceso a todas las operaciones bancarias disponibles.
- * 
- * @author TuNombre
- * @version 1.0
- */
+
 public class FrmMenuCliente extends JFrame {
     
     private final GestorBanco gestorBanco;
@@ -70,18 +63,18 @@ public class FrmMenuCliente extends JFrame {
         panel.add(Box.createVerticalStrut(30));
         
         // Botones del menú - AQUI ESTÁN LOS CAMBIOS REALES
-        agregarBoton(panel, "💰 Consultar Saldo", e -> abrirConsultaSaldo());
-        agregarBoton(panel, "💵 Realizar Depósito", e -> abrirDeposito());
-        agregarBoton(panel, "💸 Realizar Retiro", e -> abrirRetiro());
-        agregarBoton(panel, "📤 Realizar Transferencia", e -> abrirTransferencia());
-        agregarBoton(panel, "📊 Ver Movimientos", e -> abrirMovimientos());
-        agregarBoton(panel, "👤 Ver Mis Cuentas", e -> mostrarMisCuentas());
-        agregarBoton(panel, "👤 Ver Mi Información", e -> mostrarMiInformacion());
+        agregarBoton(panel, " Consultar Saldo", e -> abrirConsultaSaldo());
+        agregarBoton(panel, " Realizar Depósito", e -> abrirDeposito());
+        agregarBoton(panel, " Realizar Retiro", e -> abrirRetiro());
+        agregarBoton(panel, " Realizar Transferencia", e -> abrirTransferencia());
+        agregarBoton(panel, " Ver Movimientos", e -> abrirMovimientos());
+        agregarBoton(panel, " Ver Mis Cuentas", e -> mostrarMisCuentas());
+        agregarBoton(panel, " Ver Mi Información", e -> mostrarMiInformacion());
         
         panel.add(Box.createVerticalGlue());
         
         // Botón de cerrar sesión
-        JButton btnCerrarSesion = new JButton("🔒 Cerrar Sesión");
+        JButton btnCerrarSesion = new JButton(" Cerrar Sesión");
         btnCerrarSesion.setFont(new Font("Segoe UI", Font.BOLD, 14));
         btnCerrarSesion.setBackground(new Color(231, 76, 60));
         btnCerrarSesion.setForeground(Color.WHITE);
@@ -238,7 +231,7 @@ private void abrirMovimientos() {
         if (confirmacion == JOptionPane.YES_OPTION) {
             gestorUsuarios.cerrarSesion();
             JOptionPane.showMessageDialog(this, 
-                "✅ Sesión cerrada exitosamente", 
+                " Sesión cerrada exitosamente", 
                 "Cierre de Sesión", JOptionPane.INFORMATION_MESSAGE);
             
             dispose();

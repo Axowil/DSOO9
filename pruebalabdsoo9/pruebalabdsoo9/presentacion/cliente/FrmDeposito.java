@@ -3,19 +3,9 @@ package presentacion.cliente;
 import gestor.GestorBanco;
 import modelo.transacciones.Transaccion;
 import presentacion.MainGUI;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-/**
- * Formulario para realizar depósitos en una cuenta bancaria.
- * Valida los datos ingresados y procesa la transacción.
- * 
- * @author TuNombre
- * @version 1.0
- */
 public class FrmDeposito extends JFrame {
     
     private final GestorBanco gestorBanco;
@@ -47,7 +37,7 @@ public class FrmDeposito extends JFrame {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         
         // Título
-        JLabel lblTitulo = new JLabel("💵 REALIZAR DEPÓSITO");
+        JLabel lblTitulo = new JLabel(" REALIZAR DEPÓSITO");
         lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 24));
         lblTitulo.setForeground(new Color(39, 174, 96));
         gbc.gridx = 0; gbc.gridy = 0; gbc.gridwidth = 2;
@@ -93,19 +83,19 @@ public class FrmDeposito extends JFrame {
         JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
         panelBotones.setOpaque(false);
         
-        JButton btnDepositar = new JButton("✅ Depositar");
+        JButton btnDepositar = new JButton(" Depositar");
         btnDepositar.setFont(new Font("Segoe UI", Font.BOLD, 14));
         btnDepositar.setBackground(new Color(39, 174, 96));
         btnDepositar.setForeground(Color.WHITE);
         btnDepositar.addActionListener(e -> realizarDeposito());
         panelBotones.add(btnDepositar);
         
-        JButton btnLimpiar = new JButton("🧹 Limpiar");
+        JButton btnLimpiar = new JButton(" Limpiar");
         btnLimpiar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         btnLimpiar.addActionListener(e -> limpiar());
         panelBotones.add(btnLimpiar);
         
-        JButton btnCancelar = new JButton("❌ Cancelar");
+        JButton btnCancelar = new JButton(" Cancelar");
         btnCancelar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         btnCancelar.setBackground(new Color(231, 76, 60));
         btnCancelar.setForeground(Color.WHITE);
@@ -129,7 +119,7 @@ public class FrmDeposito extends JFrame {
         // Validación de campos obligatorios
         if (numeroCuenta.isEmpty() || montoStr.isEmpty()) {
             JOptionPane.showMessageDialog(this, 
-                "⚠️ Debe ingresar número de cuenta y monto", 
+                " Debe ingresar número de cuenta y monto", 
                 "Error de Validación", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -140,13 +130,13 @@ public class FrmDeposito extends JFrame {
             monto = Double.parseDouble(montoStr);
             if (monto <= 0) {
                 JOptionPane.showMessageDialog(this, 
-                    "⚠️ El monto debe ser mayor a cero", 
+                    " El monto debe ser mayor a cero", 
                     "Error", JOptionPane.WARNING_MESSAGE);
                 return;
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, 
-                "⚠️ El monto debe ser un número válido", 
+                " El monto debe ser un número válido", 
                 "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -156,7 +146,7 @@ public class FrmDeposito extends JFrame {
         
         if (transaccion != null) {
             JOptionPane.showMessageDialog(this, 
-                "🎉 Depósito realizado con éxito!\n\n" +
+                " Depósito realizado con éxito!\n\n" +
                 "ID Transacción: " + transaccion.getIdTransaccion() + "\n" +
                 "Cuenta: " + numeroCuenta + "\n" +
                 "Monto: $" + String.format("%,.2f", monto) + "\n" +
@@ -165,7 +155,7 @@ public class FrmDeposito extends JFrame {
             limpiar();
         } else {
             JOptionPane.showMessageDialog(this, 
-                "❌ Error al realizar el depósito.\n" +
+                " Error al realizar el depósito.\n" +
                 "Verifique que la cuenta existe, está activa y tiene permisos.", 
                 "Error en Operación", JOptionPane.ERROR_MESSAGE);
         }
