@@ -50,7 +50,7 @@ public class FrmGestionEmpleados extends JFrame {
 
         JButton btnAum = new JButton(" Aumentar Salario");
         JButton btnDep = new JButton(" Cambiar Depto");
-        JButton btnEst = new JButton("✅/❌ Toggle Estado");
+        JButton btnEst = new JButton(" Cambiar Estado Activo/Desactivo");
         Stream.of(btnAum, btnDep, btnEst).forEach(b -> b.setFont(new Font("Segoe UI", Font.PLAIN, 14)));
         bot.add(btnAum);
         bot.add(btnDep);
