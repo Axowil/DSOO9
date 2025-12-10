@@ -106,7 +106,7 @@ public class FrmRetiro extends JFrame {
         JButton btnRetirar = new JButton(" Retirar");
         btnRetirar.setFont(new Font("Segoe UI", Font.BOLD, 14));
         btnRetirar.setBackground(new Color(39, 174, 96));
-        btnRetirar.setForeground(Color.WHITE);
+        btnRetirar.setForeground(Color.DARK_GRAY);
         btnRetirar.addActionListener(e -> realizarRetiro());
         panelBotones.add(btnRetirar);
         
@@ -118,7 +118,7 @@ public class FrmRetiro extends JFrame {
         JButton btnCancelar = new JButton(" Cancelar");
         btnCancelar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         btnCancelar.setBackground(new Color(231, 76, 60));
-        btnCancelar.setForeground(Color.WHITE);
+        btnCancelar.setForeground(Color.DARK_GRAY);
         btnCancelar.addActionListener(e -> dispose());
         panelBotones.add(btnCancelar);
         

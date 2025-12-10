@@ -86,7 +86,7 @@ public class FrmDeposito extends JFrame {
         JButton btnDepositar = new JButton(" Depositar");
         btnDepositar.setFont(new Font("Segoe UI", Font.BOLD, 14));
         btnDepositar.setBackground(new Color(39, 174, 96));
-        btnDepositar.setForeground(Color.WHITE);
+        btnDepositar.setForeground(Color.DARK_GRAY);
         btnDepositar.addActionListener(e -> realizarDeposito());
         panelBotones.add(btnDepositar);
         
@@ -98,7 +98,7 @@ public class FrmDeposito extends JFrame {
         JButton btnCancelar = new JButton(" Cancelar");
         btnCancelar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         btnCancelar.setBackground(new Color(231, 76, 60));
-        btnCancelar.setForeground(Color.WHITE);
+        btnCancelar.setForeground(Color.DARK_GRAY);
         btnCancelar.addActionListener(e -> dispose());
         panelBotones.add(btnCancelar);
         

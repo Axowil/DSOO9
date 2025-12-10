@@ -286,7 +286,18 @@ public class GestorUsuarios {
         System.out.println("Empleado " + empleado.getNombreCompleto() + " agregado exitosamente");
         return true;
     }
+    public Cliente buscarClientePorDni(String dni) {
+    if (clientes == null || clientes.isEmpty()) {
+        return null;
+    }
     
+    for (Cliente cliente : clientes) {
+        if (cliente.getDni().equals(dni)) {
+            return cliente;
+        }
+    }
+    return null;
+}
     public Empleado buscarEmpleado(String dni) {
         for (Empleado empleado : empleados) {
             if (empleado.getDni().equals(dni)) {

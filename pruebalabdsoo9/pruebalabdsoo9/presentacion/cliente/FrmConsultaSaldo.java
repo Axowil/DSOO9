@@ -64,8 +64,8 @@ public class FrmConsultaSaldo extends JFrame {
         
         btnConsultar = new JButton(" Consultar");
         btnConsultar.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        btnConsultar.setBackground(new Color(52, 152, 219));
-        btnConsultar.setForeground(Color.WHITE);
+        btnConsultar.setBackground(new Color(20, 84, 156) );
+        btnConsultar.setForeground(Color.BLACK);
         btnConsultar.setCursor(new Cursor(Cursor.HAND_CURSOR));
         panelEntrada.add(btnConsultar);
         
@@ -94,7 +94,7 @@ public class FrmConsultaSaldo extends JFrame {
         JButton btnCerrar = new JButton(" Cerrar");
         btnCerrar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         btnCerrar.setBackground(new Color(231, 76, 60));
-        btnCerrar.setForeground(Color.WHITE);
+        btnCerrar.setForeground(Color.BLACK);
         btnCerrar.addActionListener(e -> dispose());
         panelBotones.add(btnCerrar);
         

@@ -90,7 +90,7 @@ public class FrmTransferenciaCliente extends JFrame {
 
         JButton btnTransferir = new JButton(" Transferir");
         btnTransferir.setBackground(new Color(39, 174, 96));
-        btnTransferir.setForeground(Color.WHITE);
+        btnTransferir.setForeground(Color.DARK_GRAY);
         btnTransferir.addActionListener(this::realizarTransferencia);
         panelBotones.add(btnTransferir);
 
@@ -100,7 +100,7 @@ public class FrmTransferenciaCliente extends JFrame {
 
         JButton btnCancelar = new JButton(" Cancelar");
         btnCancelar.setBackground(new Color(231, 76, 60));
-        btnCancelar.setForeground(Color.WHITE);
+        btnCancelar.setForeground(Color.DARK_GRAY);
         btnCancelar.addActionListener(e -> dispose());
         panelBotones.add(btnCancelar);
 

@@ -215,7 +215,7 @@ public class FrmAuditoria extends JFrame {
 
         String reporte = txtAuditoria.getText();
         JOptionPane.showMessageDialog(this, 
-            "🚧 Función de Exportación\n\n" +
+            " Función de Exportación\n\n" +
             "En una implementación real, esto guardaría el reporte en:\n" +
             "auditoria/logs/auditoria_" + new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()) + ".txt\n\n" +
             "Reporte generado con éxito. (Simulado)", 

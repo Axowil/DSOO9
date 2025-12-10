@@ -48,7 +48,7 @@ public class FrmMovimientos extends JFrame {
         JButton btnConsultar = new JButton(" Consultar Movimientos");
         btnConsultar.setFont(new Font("Segoe UI", Font.BOLD, 14));
         btnConsultar.setBackground(new Color(52, 152, 219));
-        btnConsultar.setForeground(Color.WHITE);
+        btnConsultar.setForeground(Color.DARK_GRAY);
         btnConsultar.addActionListener(e -> consultarMovimientos());
         btnConsultar.setCursor(new Cursor(Cursor.HAND_CURSOR));
         panelEntrada.add(btnConsultar);
@@ -74,7 +74,7 @@ public class FrmMovimientos extends JFrame {
         btnExportar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         btnExportar.setToolTipText("Función disponible próximamente");
         btnExportar.addActionListener(e -> JOptionPane.showMessageDialog(this, 
-            "🚧 Función de exportación en desarrollo", "Próximamente", JOptionPane.INFORMATION_MESSAGE));
+            " Función de exportación en desarrollo", "Próximamente", JOptionPane.INFORMATION_MESSAGE));
         panelBotones.add(btnExportar);
         
         JButton btnLimpiar = new JButton(" Limpiar");
@@ -85,7 +85,7 @@ public class FrmMovimientos extends JFrame {
         JButton btnCerrar = new JButton(" Cerrar");
         btnCerrar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         btnCerrar.setBackground(new Color(231, 76, 60));
-        btnCerrar.setForeground(Color.WHITE);
+        btnCerrar.setForeground(Color.darkGray);
         btnCerrar.addActionListener(e -> dispose());
         panelBotones.add(btnCerrar);
         

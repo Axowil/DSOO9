@@ -6,6 +6,7 @@ import modelo.cuentas.Cuenta;
 import modelo.personas.UsuarioCliente;
 import presentacion.cliente.FrmConsultaSaldo;
 import presentacion.cliente.FrmDeposito;
+import presentacion.cliente.FrmMisCuentas;
 import presentacion.cliente.FrmMovimientos;
 import presentacion.cliente.FrmRetiro;
 import presentacion.cliente.FrmTransferenciaCliente;
@@ -61,14 +62,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setLayout(new BoxLayout(panelPrincipal, BoxLayout.Y_AXIS));
         panelPrincipal.setBorder(BorderFactory.createEmptyBorder(25, 25, 25, 25));
-        panelPrincipal.setBackground(new Color(240, 248, 255)); // AliceBlue
-        
-        // Título del menú
-        JLabel lblTitulo = new JLabel("🏦 " + tipoUsuario);
-        lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 28));
-        lblTitulo.setForeground(new Color(41, 128, 185));
-        lblTitulo.setAlignmentX(Component.CENTER_ALIGNMENT);
-        panelPrincipal.add(lblTitulo);
+        panelPrincipal.setBackground(new Color(231, 248, 255)); 
         
         JLabel lblSubtitulo = new JLabel("Sistema Bancario - Laboratorio 09");
         lblSubtitulo.setFont(new Font("Segoe UI", Font.PLAIN, 14));
@@ -87,16 +81,18 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                 agregarBoton(panelPrincipal, " Realizar Transferencia", e -> abrirTransferencia());
                 agregarBoton(panelPrincipal, " Ver Movimientos", e -> abrirMovimientos());
                 agregarBoton(panelPrincipal, " Ver Mis Cuentas", e -> mostrarMisCuentas());
-                agregarBoton(panelPrincipal, " Ver Mi Información", e -> mostrarMiInformacion());
+                
                 break;
                 
             case "EMPLEADO":
-                agregarBoton(panelPrincipal, " Gestionar Clientes", e -> abrirGestionClientes());
-                agregarBoton(panelPrincipal, " Gestionar Cuentas", e -> abrirGestionCuentas());
-                agregarBoton(panelPrincipal, " Procesar Transacciones", e -> abrirTransacciones());
-                agregarBoton(panelPrincipal, " Consultas del Sistema", e -> abrirConsultas());
-                agregarBoton(panelPrincipal, " Reportes y Estadísticas", e -> abrirReportes());
-                agregarBoton(panelPrincipal, " Ver Mi Información", e -> mostrarMiInformacion());
+                agregarBoton(panelPrincipal, " Ver Lista de clientes", e -> abrirListaClientes());
+                agregarBoton(panelPrincipal, " Buscar por dni Cliente", e -> abrirBuscarClienteporDni());
+                agregarBoton(panelPrincipal, " Crear nuevo Cliente", e -> abrirCrearCliente());
+                agregarBoton(panelPrincipal, " Crear Cuenta de Ahorros ", e -> abrirCrearCuentaAhorros());
+                agregarBoton(panelPrincipal, " Crear Cuenta Corriente ", e -> abrirCrearCuentaCorriente());
+                agregarBoton(panelPrincipal, " Depositar para cliente  ", e -> abrirDepositarparaCliente());
+                agregarBoton(panelPrincipal, " Retirar para cliente ", e -> abrirRetiroparaCliente());
+                agregarBoton(panelPrincipal, " Transferencia para cliente ", e -> abrirTransferenciaCliente());
                 break;
                 
             case "ADMINISTRADOR":
@@ -105,7 +101,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                 agregarBoton(panelPrincipal, " Gestión Completa del Sistema", e -> abrirGestionCompleta());
                 agregarBoton(panelPrincipal, " Reportes y Estadísticas", e -> abrirReportesAdmin());
                 agregarBoton(panelPrincipal, " Auditoría del Sistema", e -> abrirAuditoria());
-                agregarBoton(panelPrincipal, " Ver Todos los Permisos", e -> mostrarTodosPermisos());
                 break;
         }
         
@@ -114,8 +109,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         // Botón de cerrar sesión
         JButton btnCerrarSesion = new JButton(" Cerrar Sesión");
         btnCerrarSesion.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        btnCerrarSesion.setBackground(new Color(231, 76, 60));
-        btnCerrarSesion.setForeground(Color.WHITE);
+        btnCerrarSesion.setBackground(new Color(20, 84, 156));
         btnCerrarSesion.setAlignmentX(Component.CENTER_ALIGNMENT);
         btnCerrarSesion.setMaximumSize(new Dimension(400, 50));
         btnCerrarSesion.addActionListener(e -> cerrarSesion());
@@ -130,7 +124,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         boton.setAlignmentX(Component.CENTER_ALIGNMENT);
         boton.setMaximumSize(new Dimension(500, 60));
         boton.addActionListener(accion);
-        boton.setCursor(new Cursor(Cursor.HAND_CURSOR)); // Cursor de mano
+        boton.setCursor(new Cursor(Cursor.HAND_CURSOR)); 
         
         // Color alternado para botones
         boton.setBackground(new Color(52, 152, 219));
@@ -173,255 +167,50 @@ private void abrirMovimientos() {
     frm.setVisible(true);
     frm.setLocationRelativeTo(this);
 }
-    
-    private void mostrarMisCuentas() {
-        UsuarioCliente usuarioActual = (UsuarioCliente) gestorUsuarios.getUsuarioActual();
-        if (usuarioActual != null && usuarioActual.getCliente() != null) {
-            StringBuilder info = new StringBuilder();
-            info.append("═══════════════════════════════════════════════════════\n");
-            info.append("                  MIS CUENTAS BANCARIAS\n");
-            info.append("═══════════════════════════════════════════════════════\n\n");
-            info.append(String.format("Cliente: %s\n", usuarioActual.getCliente().getNombreCompleto()));
-            info.append(String.format("ID: %s\n", usuarioActual.getCliente().getIdCliente()));
-            info.append(String.format("Categoría: %s\n\n", usuarioActual.getCliente().getCategoria()));
-            
-            var cuentas = usuarioActual.getCliente().getCuentasAsociadas();
-            if (cuentas.isEmpty()) {
-                info.append("No tiene cuentas asociadas.\n");
-            } else {
-                info.append("Cuentas Asociadas:\n");
-                for (String numCuenta : cuentas) {
-                    Cuenta cuenta = gestorBanco.buscarCuenta(numCuenta);
-                    if (cuenta != null) {
-                        info.append(String.format("  • %s [%s] - Saldo: $%,.2f - %s\n", 
-                            numCuenta, 
-                            cuenta.getClass().getSimpleName(),
-                            cuenta.getSaldo(),
-                            cuenta.getEstado()
-                        ));
-                    }
-                }
-            }
-            
-            info.append("\n═══════════════════════════════════════════════════════");
-            
-            JTextArea textArea = new JTextArea(info.toString());
-            textArea.setFont(new Font("Monospaced", Font.PLAIN, 13));
-            textArea.setEditable(false);
-            textArea.setBackground(new Color(250, 250, 250));
-            
-            JScrollPane scrollPane = new JScrollPane(textArea);
-            scrollPane.setPreferredSize(new Dimension(650, 400));
-            
-            JOptionPane.showMessageDialog(this, scrollPane, 
-                "Mis Cuentas - " + usuarioActual.getCliente().getNombreCompleto(), 
-                JOptionPane.INFORMATION_MESSAGE);
-        }
-    }
-   
-    private void mostrarMiInformacion() {
-        UsuarioCliente usuarioActual = (UsuarioCliente) gestorUsuarios.getUsuarioActual();
-        if (usuarioActual != null) {
-            StringBuilder info = new StringBuilder();
-            info.append("═══════════════════════════════════════════════════════\n");
-            info.append("              MI INFORMACIÓN PERSONAL\n");
-            info.append("═══════════════════════════════════════════════════════\n\n");
-            
-            info.append("[USUARIO]\n");
-            info.append(String.format("Usuario:      %s\n", usuarioActual.getNombreUsuario()));
-            info.append(String.format("Tipo:         %s\n", usuarioActual.getClass().getSimpleName()));
-            info.append(String.format("Estado:       %s\n\n", usuarioActual.isEstado() ? "ACTIVO" : "INACTIVO"));
-            
-            if (usuarioActual.getCliente() != null) {
-                var cliente = usuarioActual.getCliente();
-                info.append("[CLIENTE ASOCIADO]\n");
-                info.append(String.format("ID Cliente:   %s\n", cliente.getIdCliente()));
-                info.append(String.format("DNI:          %s\n", cliente.getDni()));
-                info.append(String.format("Nombre:       %s\n", cliente.getNombreCompleto()));
-                info.append(String.format("Email:        %s\n", cliente.getEmail()));
-                info.append(String.format("Teléfono:     %s\n", cliente.getTelefono()));
-                info.append(String.format("Categoría:    %s\n", cliente.getCategoria()));
-                info.append(String.format("Límite:       $%,.2f\n", cliente.getLimiteCredito()));
-                info.append(String.format("Cuentas:      %d asociadas\n", cliente.getCuentasAsociadas().size()));
-            }
-            
-            info.append("\n═══════════════════════════════════════════════════════");
-            
-            JTextArea textArea = new JTextArea(info.toString());
-            textArea.setFont(new Font("Monospaced", Font.PLAIN, 13));
-            textArea.setEditable(false);
-            textArea.setBackground(new Color(250, 250, 250));
-            
-            JScrollPane scrollPane = new JScrollPane(textArea);
-            scrollPane.setPreferredSize(new Dimension(600, 350));
-            
-            JOptionPane.showMessageDialog(this, scrollPane, 
-                "Mi Información", JOptionPane.INFORMATION_MESSAGE);
-        }
-    }
+private void mostrarMisCuentas() {
+    FrmMisCuentas frm = new FrmMisCuentas(gestorUsuarios, gestorBanco);
+    frm.setVisible(true);
+    frm.setLocationRelativeTo(this);
+}
+
+
     
     // =============== MÉTODOS PARA EMPLEADO ===============
-    
-private void abrirGestionClientes() {
-    // Si ya tenés un JFrame con tabla/busqueda usalo; si no, este rápido:
-    String[] opciones = {"Ver todos", "Buscar por DNI", "Agregar cliente"};
-    int op = JOptionPane.showOptionDialog(this, "¿Qué desea hacer?", "Gestionar Clientes",
-            JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
+    private void abrirListaClientes() {
+        new presentacion.empleado.FrmListaClientes().setVisible(true);
+    }
 
-    switch (op) {
-        case 0 -> gestorBanco.getGestorUsuarios().mostrarTodosLosClientes(); 
-        case 1 -> buscarClientePorDni();
-        case 2 -> agregarClienteInteractivo();
+    private void abrirBuscarClienteporDni() {
+        new presentacion.empleado.FrmBuscarClienteporDni().setVisible(true);
     }
-}
 
-/* ---- helpers rápidos (si no tenés forms) ---- */
-private void buscarClientePorDni() {
-    String dni = JOptionPane.showInputDialog(this, "Ingrese DNI:");
-    if (dni == null || dni.isBlank()) return;
-    var c = gestorBanco.getGestorUsuarios().buscarCliente(dni);
-    if (c != null) {
-        JTextArea ta = new JTextArea(c.toString());
-        ta.setFont(new Font("Monospaced", Font.PLAIN, 12));
-        JOptionPane.showMessageDialog(this, new JScrollPane(ta), "Cliente encontrado", JOptionPane.INFORMATION_MESSAGE);
-    } else {
-        JOptionPane.showMessageDialog(this, "Cliente no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+    private void abrirCrearCliente() {
+        new presentacion.empleado.FrmCrearCliente().setVisible(true);
     }
-}
 
-private void agregarClienteInteractivo() {
-    gestorBanco.getGestorUsuarios().agregarClienteInteractivo(new Scanner(System.in)); // usa consola por ahora
-    JOptionPane.showMessageDialog(this, "Cliente agregado vía consola", "Listo", JOptionPane.INFORMATION_MESSAGE);
-}
-private void abrirGestionCuentas() {
-    String[] ops = {"Ver todas", "Crear cuenta de ahorros", "Crear cuenta corriente"};
-    int op = JOptionPane.showOptionDialog(this, "Seleccione:", "Gestionar Cuentas",
-            JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, ops, ops[0]);
-    switch (op) {
-        case 0 -> gestorBanco.mostrarTodasLasCuentas(); // consola
-        case 1 -> crearCuentaAhorros();
-        case 2 -> crearCuentaCorriente();
+    private void abrirCrearCuentaAhorros() {
+        new presentacion.empleado.FrmCrearCuentaAhorros().setVisible(true);
     }
-}
 
-private void crearCuentaAhorros() {
-    String num   = JOptionPane.showInputDialog("Número de cuenta:");
-    String dni   = JOptionPane.showInputDialog("DNI del cliente:");
-    String saldoS= JOptionPane.showInputDialog("Saldo inicial:");
-    if (num == null || dni == null || saldoS == null) return;
-    try {
-        double saldo = Double.parseDouble(saldoS);
-        var cliente  = gestorBanco.getGestorUsuarios().buscarCliente(dni);
-        if (cliente == null) {
-            JOptionPane.showMessageDialog(this, "Cliente no existe", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        boolean ok = gestorBanco.crearCuentaAhorros(num, saldo, cliente);
-        if (ok) {
-            JOptionPane.showMessageDialog(this, "Cuenta de ahorros creada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-        }
-    } catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(this, "Saldo inválido", "Error", JOptionPane.ERROR_MESSAGE);
+    private void abrirCrearCuentaCorriente() {
+        new presentacion.empleado.FrmCrearCuentaCorriente().setVisible(true);
     }
-}
 
-private void crearCuentaCorriente() {
-    // idem ahorros, pero llamando a crearCuentaCorriente(...)
-    String num   = JOptionPane.showInputDialog("Número de cuenta:");
-    String dni   = JOptionPane.showInputDialog("DNI del cliente:");
-    String saldoS= JOptionPane.showInputDialog("Saldo inicial:");
-    if (num == null || dni == null || saldoS == null) return;
-    try {
-        double saldo = Double.parseDouble(saldoS);
-        var cliente  = gestorBanco.getGestorUsuarios().buscarCliente(dni);
-        if (cliente == null) {
-            JOptionPane.showMessageDialog(this, "Cliente no existe", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        boolean ok = gestorBanco.crearCuentaCorriente(num, saldo, cliente);
-        if (ok) {
-            JOptionPane.showMessageDialog(this, "Cuenta corriente creada", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-        }
-    } catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(this, "Saldo inválido", "Error", JOptionPane.ERROR_MESSAGE);
+    private void abrirDepositarparaCliente() {
+        new presentacion.empleado.FrmDepositarparaCliente().setVisible(true);
     }
-}
-    
-private void abrirTransacciones() {
-    String[] ops = {"Depósito", "Retiro", "Transferencia"};
-    int op = JOptionPane.showOptionDialog(this, "¿Transacción?", "Procesar Transacciones",
-            JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, ops, ops[0]);
-    switch (op) {
-        case 0 -> new presentacion.cliente.FrmDeposito().setVisible(true);
-        case 1 -> new presentacion.cliente.FrmRetiro().setVisible(true);
-        case 2 -> new presentacion.cliente.FrmTransferenciaCliente().setVisible(true);
+
+    private void abrirRetiroparaCliente() {
+        new presentacion.empleado.FrmRetiroparaCliente().setVisible(true);
     }
-}
-    
-   private void abrirConsultas() {
-    String[] ops = {"Consultar saldo", "Consultar movimientos", "Transacciones recientes"};
-    int op = JOptionPane.showOptionDialog(this, "¿Consulta?", "Consultas",
-            JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, ops, ops[0]);
-    switch (op) {
-        case 0 -> {
-            String num = JOptionPane.showInputDialog("Número de cuenta:");
-            if (num != null) gestorBanco.consultarSaldo(num); // usa el existente
-        }
-        case 1 -> {
-            String num = JOptionPane.showInputDialog("Número de cuenta:");
-            if (num != null) {
-                var cuenta = gestorBanco.buscarCuenta(num);
-                if (cuenta != null) {
-                    JTextArea ta = new JTextArea(String.join("\n", cuenta.getMovimientos()));
-                    ta.setFont(new Font("Monospaced", Font.PLAIN, 12));
-                    JOptionPane.showMessageDialog(this, new JScrollPane(ta), "Movimientos", JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(this, "Cuenta no encontrada", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        }
-        case 2 -> {
-            int cant = 5;
-            try {
-                String c = JOptionPane.showInputDialog("¿Cuántas transacciones?", "5");
-                if (c != null) cant = Integer.parseInt(c);
-            } catch (NumberFormatException ignore) {}
-            var lista = gestorBanco.getTransaccionesRecientes(cant);
-            if (lista.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "No hay transacciones", "Info", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                StringBuilder sb = new StringBuilder();
-                lista.forEach(t -> sb.append(t.toStringCorto()).append('\n'));
-                JTextArea ta = new JTextArea(sb.toString());
-                ta.setFont(new Font("Monospaced", Font.PLAIN, 12));
-                JOptionPane.showMessageDialog(this, new JScrollPane(ta), "Recientes", JOptionPane.INFORMATION_MESSAGE);
-            }
-        }
+
+    private void abrirTransferenciaCliente() {
+        new presentacion.empleado.FrmTransferenciaCliente().setVisible(true);
     }
-}
-    
-    private void abrirReportes() {
-        // Mostrar estadísticas en un área de texto
-        JTextArea textArea = new JTextArea();
-        textArea.setFont(new Font("Monospaced", Font.PLAIN, 12));
-        textArea.setEditable(false);
-        
-        StringBuilder reporte = new StringBuilder();
-        reporte.append("=== REPORTES EMPLEADO ===\n\n");
-        reporte.append("Total de cuentas: ").append(gestorBanco.getCuentas().size()).append("\n");
-        reporte.append("Total de transacciones: ").append(gestorBanco.getTransacciones().size()).append("\n");
-        reporte.append("Total de titularidades: ").append(gestorBanco.getTitularidades().size()).append("\n");
-        
-        textArea.setText(reporte.toString());
-        JScrollPane scrollPane = new JScrollPane(textArea);
-        scrollPane.setPreferredSize(new Dimension(500, 400));
-        
-        JOptionPane.showMessageDialog(this, scrollPane, 
-            "Reportes", JOptionPane.INFORMATION_MESSAGE);
-    }
+
     
     // =============== MÉTODOS PARA ADMINISTRADOR ===============
-    
+
     private void abrirGestionUsuarios() {
     new presentacion.administrador.FrmGestionUsuarios().setVisible(true);
 }
@@ -463,7 +252,6 @@ private void abrirGestionEmpleados() {
         JOptionPane.showMessageDialog(this, scrollPane, 
             "Auditoría", JOptionPane.INFORMATION_MESSAGE);
     }
-    
     /**
      * Cierra la sesión actual y vuelve al login.
      */
@@ -489,7 +277,5 @@ private void abrirGestionEmpleados() {
             login.setLocationRelativeTo(null);
         }
     }
-     private void mostrarTodosPermisos() {
-    new presentacion.administrador.FrmPermisosAdmin().setVisible(true);
 }
-}
+    

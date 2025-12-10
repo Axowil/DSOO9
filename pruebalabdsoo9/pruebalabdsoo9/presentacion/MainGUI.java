@@ -13,7 +13,6 @@ public class MainGUI {
         }
         return gestorBanco;
     }
-    
     public static void main(String[] args) {
         
         // Ejecutar en el Event Dispatch Thread de Swing
