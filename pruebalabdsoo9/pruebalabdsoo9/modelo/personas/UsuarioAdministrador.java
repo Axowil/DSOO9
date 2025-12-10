@@ -1,9 +1,8 @@
 package modelo.personas;
 
 public class UsuarioAdministrador extends Usuario {
-    
     public UsuarioAdministrador(String nombreUsuario, String contraseña) {
-        super(nombreUsuario, contraseña, null);
+        super(nombreUsuario, contraseña, null );
     }
     
     @Override

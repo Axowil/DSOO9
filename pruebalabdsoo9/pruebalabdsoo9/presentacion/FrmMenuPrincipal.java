@@ -4,6 +4,7 @@ import gestor.GestorBanco;
 import gestor.GestorUsuarios;
 import modelo.cuentas.Cuenta;
 import modelo.personas.UsuarioCliente;
+import presentacion.administrador.FrmAgregarUsuarios;
 import presentacion.cliente.FrmConsultaSaldo;
 import presentacion.cliente.FrmDeposito;
 import presentacion.cliente.FrmMisCuentas;
@@ -101,6 +102,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                 agregarBoton(panelPrincipal, " Gestión Completa del Sistema", e -> abrirGestionCompleta());
                 agregarBoton(panelPrincipal, " Reportes y Estadísticas", e -> abrirReportesAdmin());
                 agregarBoton(panelPrincipal, " Auditoría del Sistema", e -> abrirAuditoria());
+                agregarBoton(panelPrincipal, "Agregar Usuarios", e -> abrirAgregarUsuarios());
                 break;
         }
         
@@ -172,7 +174,10 @@ private void mostrarMisCuentas() {
     frm.setVisible(true);
     frm.setLocationRelativeTo(this);
 }
-
+private void abrirAgregarUsuarios() {
+    FrmAgregarUsuarios frmAgregar = new FrmAgregarUsuarios(gestorUsuarios);
+    frmAgregar.setVisible(true);
+}
 
     
     // =============== MÉTODOS PARA EMPLEADO ===============
