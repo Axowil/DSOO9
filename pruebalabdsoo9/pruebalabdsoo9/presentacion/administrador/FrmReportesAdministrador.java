@@ -63,7 +63,7 @@ public class FrmReportesAdministrador extends JFrame {
         JButton btnCerrar = new JButton(" Cerrar");
         btnCerrar.setFont(new Font("Segoe UI", Font.BOLD, 14));
         btnCerrar.setBackground(new Color(231, 76, 60));
-        btnCerrar.setForeground(Color.WHITE);
+        btnCerrar.setForeground(Color.DARK_GRAY);
         btnCerrar.addActionListener(e -> dispose());
         panelBotones.add(btnCerrar);
         
